@@ -1,0 +1,184 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --poppins:'Poppins', sans-serif;
+}
+
+
+.about-main-img{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-img-first{
+    width: 100%;
+    height: 50vh;
+}
+
+.about-text-first{
+    position: absolute;
+    bottom: 200px;
+    width: 80%;
+}
+
+.about-text-h2{
+    font-family: var(--poppins);
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: #FFFFFF;
+    padding-bottom: 10px;
+}
+
+
+.about-text-p{
+    font-family: var(--poppins);
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+.about-main-description{
+    width: 90%;
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .about-container-img{
+
+} */
+
+.about-img-principal{
+    width: 500px;
+    height: 500px;
+}
+
+
+.about-container-aside{
+    padding: 0 100px;
+}
+
+.about-aside-about-us{
+    font-family: var(--poppins);
+    font-weight: 600;
+    font-size: 48px;
+    color: #3D9A67;
+}
+
+.about-aside-description{
+    font-family: var(--poppins);
+    font-weight: 400;
+    font-size: 16px;
+    color: #535353;
+}
+
+
+.about-container-avatar{
+    display: flex;
+    padding: 40px 0;
+}
+
+.about-img-avatar{
+    border-radius: 50%;
+    border: 3px solid #3D9A67;;
+}
+
+.about-container-name-lastaname{
+    padding-left: 20px;
+}
+
+.about-h2-name{
+    font-family: var(--poppins);
+    font-size: 24px;
+    font-weight: 600;
+    color: #3D9A67;
+}
+
+.about-p-lastname{
+    font-family: var(--poppins);
+    font-size: 16px;
+    font-weight: 400;
+    color: #535353;
+}
+
+.about-main-fundation{
+    width: 90%;
+    margin: 0 auto;
+    background: #3D9A67;
+    padding: 30px 30px 30px 100px;
+    margin-bottom: 80px;
+}
+
+.about-fundation-title{
+    color: #FFFFFF;
+    font-family: var(--poppins);
+    font-weight: 600;
+    font-size: 48px;
+}
+
+.about-fundation-description{
+    color: #FFFFFF;
+    font-family: var(--poppins);
+    font-weight: 400;
+    font-size: 16px;
+}
+
+
+@media  (max-width: 1200px){
+    .about-main-description{
+        flex-direction: column;
+    }
+    .about-img-principal{
+        min-width: 80%;
+    }
+    .about-container-aside{
+        padding: 0;
+    }
+
+    .about-main-fundation{
+        padding: 30px;
+    }
+
+    .about-text-first {
+        bottom: 100px;
+    }
+}
+
+
+@media  (max-width: 600px){
+    .about-img-principal{
+        width: 300px;
+        height: 300px;
+    }
+    .about-aside-about-us{
+        text-align: center;
+    }
+    .about-aside-description{
+        text-align: justify;
+    }
+    .about-fundation-title{
+        font-size: 40px;
+        text-align: center;
+    }
+    .about-fundation-description{
+        text-align: justify;
+    }
+    .about-text-p{
+        font-size: 12px;
+    }
+    .about-text-h2 {
+    font-size: 16px;
+    }
+}
+
+

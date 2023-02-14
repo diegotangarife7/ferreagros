@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Sobre Nosotros {% endblock  %}
+
+
+
+
+
+
+{% block content %}
+
+
+<main class="about-main">
+    <section class="about-main-img">
+        <img class="about-img-first" src="{% static 'images/image_19.png' %}" alt="">
+        <div class="about-text-first">
+            <h2 class="about-text-h2">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <p class="about-text-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </section>
+
+    <section class="about-main-description">
+        <picture class="about-container-img">
+            <img class="about-img-principal" src="{% static 'images/image_32.png' %}" alt="">
+        </picture>
+        <aside class="about-container-aside">
+            <h2 class="about-aside-about-us">Quines somos</h2>
+            <p class="about-aside-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <picture class="about-container-avatar">
+                <div>
+                    <img class="about-img-avatar" src="{% static 'images/image_33.png' %}" alt="">
+                </div>
+                <div class="about-container-name-lastaname">
+                    <h2 class="about-h2-name">Lorem ipsum Lorem ipsum</h2>
+                    <p class="about-p-lastname">Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsumLorem ipsum Lorem ipsumLorem ipsum Lorem ipsum</p>
+                </div>
+            </picture>
+            <h2 class="about-aside-about-us">Visión</h2>
+           <p class="about-aside-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </aside>
+    </section>
+
+    <section class="about-main-fundation">
+        <h2 class="about-fundation-title">Fundación</h2>
+        <p class="about-fundation-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+</main>
+
+
+{% endblock  %}

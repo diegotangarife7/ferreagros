@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --poppins:'Poppins', sans-serif;
+}
+
+.footer{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), #004D40;
+    width: 100%;
+}
+
+.container-footer{
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.container-icons-fb-tw-ins{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.icons-link-fb-tw-ins{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), #004D40;
+    font-size: 35px;
+    color: #3D9A67;
+    margin: 20px;
+}
+
+.icons-link-fb-tw-ins:hover{
+    color: #387553;
+}
+
+.footer-info-h3{
+    display: flex;
+    color: #FFFFFF;
+    font-family: var(--poppins );
+    font-size: 12px;
+    padding: 10px;
+    flex-wrap: wrap;
+    font-weight: 100;
+    justify-content: center;
+}
+
+.info-h3-detail{
+    padding: 10px;
+}
+
+
+.footer-text-copyright{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.footer-text-syle{
+    font-size: 12px;
+    color: #FFFFFF;
+    font-family: var(--poppins);
+}
+
+
+
+
+

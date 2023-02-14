@@ -1,0 +1,5 @@
+venv 
+secret.json
+__pycache__
+migrations
+media/

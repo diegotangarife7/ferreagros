@@ -1,0 +1,244 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block title %} inicio {% endblock  %}
+
+{% block content %}
+
+
+
+<main class="main">
+
+    <section class="main-one-section">
+        <div class="section-description">
+            <p class="description-p">Producto nuevo</p>
+            <h1 class="description-title">FUMIGADORA TOYAMA</h1>
+            <h3 class="description-h3">ESTACIONARIA TPS45C SUCCIÓN 45l/min PRESION 640psi/44bar CON LLANTAS</h3>
+            <a href="" class="description-a">Ver detalle</a>
+        </div>
+        <aside class="section-image">
+            <figure class="image-figure">
+                <img class="figure-principal" src="{% static 'images/principal.png' %}" alt="">
+                <div class="figure-discount">
+                    <h2 class="discount-h2">15%</h2>
+                    <p class="discount-p">Descuento</p>
+                </div>
+                <div class="figure-icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+            </figure>
+            <img class="figure-one" src="{% static 'images/vector_1.png' %}" alt="">
+            <img class="figure-two" src="{% static 'images/vector_2.png' %}" alt="">
+            <img class="figure-three" src="{% static 'images/union.png' %}" alt="">
+        </aside>
+    </section>
+
+
+
+
+    
+    <section class="main-two-section">
+        <div class="section-container-products">
+            <div class="products-description">
+                <h2 class="description-title-h2">Nuestros productos</h2>
+                <p class="description-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="products-name">
+                <h2 class="name-title">Nombre del producto</h2>
+                <p class="name-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    
+
+    <section class="main-three-section">
+        <p class="three-section-p">Productos Destacados</p>
+        <picture class="three-section-picture">
+            <img class="section-picture-img" src="{% static 'images/tractor.jpg' %}" alt="">
+            <img class="section-picture-img" src="{% static 'images/taladro.png' %}" alt="">
+            <img class="section-picture-img" src="{% static 'images/principal.png' %}" alt="">
+            <img class="section-picture-img" src="{% static 'images/ensayo_2.png' %}" alt="">
+        </picture>
+    </section>
+
+
+
+
+
+    <section class="main-four-section">
+        <div class="four-section-container">
+            <h2 class="container-title-h2">Lo más vendido</h2>
+            <picture class="container-picture">
+                <img class="picture-images" src="{% static 'images/motobomba.jpg' %}" alt="">
+                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
+                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
+                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
+                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
+                <img class="picture-images" src="{% static 'images/principal.png' %}" alt="">
+            </picture>
+            <div class="container-cards">
+                <div class="card-product-info">
+                    <div class="product-info-detail">
+                        <h3 class="info-detail-title">motos</h3>
+                        <p class="info-detail-description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believabl</p>
+                        <div class="info-detail-link">
+                            <a class="detail-link-a" href="">ver detalle</a>
+                        </div>
+                    </div>
+                    <picture class="product-info-picture">
+                        <img class="info-picture-image" src="{% static 'images/tractor.jpg' %}" alt="">
+                    </picture>
+                </div>
+                <div class="card-product-info">
+                    <div class="product-info-detail">
+                        <h3 class="info-detail-title">tractor</h3>
+                        <p class="info-detail-description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believabl</p>
+                        <div class="info-detail-link">
+                            <a class="detail-link-a" href="">ver detalle</a>
+                        </div>
+                    </div>
+                    <picture class="product-info-picture">
+                        <img class="info-picture-image" src="{% static 'images/principal.png' %}" alt="">
+                    </picture>
+                </div>
+            </div>
+            <div class="container-detail-add-car">
+                <picture class="detail-add-car-image">
+                    <img class="add-car-big-image" src="{% static 'images/image_13.png' %}" alt="">
+                </picture>
+                <picture class="detail-images-buy">
+                    <img class="image-buy-individual" src="{% static 'images/image_13.png' %}" alt="">
+                    <img class="image-buy-individual" src="{% static 'images/image_13.png' %}" alt="">
+                    <img class="image-buy-individual" src="{% static 'images/image_13.png' %}" alt="">
+                </picture>
+                <div class="detail-info-product">
+                    <div class="info-product-name-description">
+                        <h2 class="product-name-title">Tubos industriales</h2>
+                        <p class="product-name-descripcion-p">There Are Many Variations Of Passages Of Lorem Ipsum Available, But The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomised Words Which Don't Look Even Slightly Believabl</p>
+                    </div>
+                    <div class="detail-info-price">
+                        <h2 class="detail-info-price-h2">$ 215.000</h2>
+                        <div class="check-checkbox-stock">
+                            <label class="detail-info-label-stock" for="">En stock</label>
+                            <input class="detail-info-checkbox" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="detail-action-user">
+                        <div class="action-user-add-car">
+                            <a class="link-add-car" href="">Añadir al carrito</a>
+                        </div>
+                        <a href="" class="action-user-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a href="" class="action-user-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                    <div class="detail-product-categories">
+                        <h3 class="product-title-category">Categorias:</h3>
+                        <ul class="product-ul-categories">
+                            <li class="ul-li-category">Fumigadoras</li>
+                            <li class="ul-li-category">motores</li>
+                            <li class="ul-li-category">Prensadoras</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="main-five-section">
+        <div class="container-left-form">
+            <div class="container-form-info">
+                <h2 class="info-title-contact">Contactanos</h2>
+                <p class="info-p-contact">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+            <form action="" class="form-form-email-information">
+                <div class="information-name-email">
+                    <div class="input-user-name-email">
+                        <label class="style-label-text" for="">Nombre</label>
+                        <input type="text" class="style-inputs-form" maxlength="">
+                    </div>
+                    <div class="input-user-name-email">
+                        <label class="style-label-text" for="">Correo</label>
+                        <input class="style-inputs-form" type="email" maxlength="">
+                    </div>
+                </div>
+                <div class="information-name-email">
+                    <div class="input-user-name-email">
+                        <label class="style-label-text" for="">Telefono</label>
+                        <input class="style-inputs-form" type="number" max="">
+                    </div>
+                    <div class="input-user-name-email">
+                        <label class="style-label-text" for="">Asunto</label>
+                        <input class="style-inputs-form" type="text" maxlength="">
+                    </div>
+                </div>
+                <div class="container-text-input-textarea">
+                    <div class="input-textarea-message">
+                        <label class="style-label-text" for="">Mensaje</label>
+                        <textarea class="style-inputs-form input-textarea-user"></textarea>
+                    </div>
+                </div>
+                <div class="form-text-container-checbox">
+                    <div class="container-check-notifications">
+                        <input type="checkbox">
+                        <p class="text-notifications">Recibir notificaciones sobre productos nuevos y promociones</p>
+                    </div>
+                    <div class="container-booton-send">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <button class="style-botton-send">Enviar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="general-information-company">
+                <div class="aditional-info">
+                    <i class="fa-solid fa-phone icon-color"></i>
+                    <p class="info-company-p">(+57)1234567890</p>
+                </div>
+                <div class="aditional-info">
+                    <i class="fa-solid fa-location-dot icon-color"></i>
+                    <p class="info-company-p">cartago valle. Cra 12 #34-56 </p> 
+                </div>
+                <div class="aditional-info">
+                    <i class="fa-regular fa-clock icon-color"></i>
+                    <p class="info-company-p">Lun a Vie - 8 A.M - 6 P.M</p> 
+                </div>
+            </div>
+        </div>
+        <picture class="container-right-picture">
+            <img class="right-picture-img" src="{% static 'images/contactanos.png' %}" alt="">
+        </picture>
+    </section>
+
+
+
+
+
+    <section class="main-six-section">
+        <div class="ubication-google-maps">
+            <h2 class="maps-title">Ubicacion Satelital</h2>
+            <p class="google-maps-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="container-map-ubication">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.39280701257!2d-74.24789593340266!3d4.64862594233483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1674888866645!5m2!1ses!2sco" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+
+
+{% endblock  %}
+
+
+
