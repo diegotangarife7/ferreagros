@@ -1,0 +1,82 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block title %} todos los productos {% endblock  %}
+
+
+
+
+
+{% block content %}
+
+
+<main class="all-products-categories-container">
+
+    <article class="all-title-descripcion">
+        <div class="all-container-title">
+            <h2 class="all-title-h2">Categorias</h2>
+        </div>
+        <div class="all-container-description">
+            <p class="all-description-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        </div>
+    </article>
+
+
+    <section class="all-section-categories-products-container">
+
+        <div class="all-list-all-categories">
+            <ul class="all-list-ul">
+                {% for category in all_categories %}
+                    <li class="all-list-ul-li"><a class="all-list-ul-li-a" href="{% url 'product_app:filtered_by_categories' slug=category.slug %}">{{category}}</a></li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'product_app:all_categories_products' %}">ver todos los productos</a>
+        </div>
+
+
+        <aside class="all-aside-cards-container">
+
+            <div class="all-container-product-pagination">
+
+                {% for product in all_products %}
+                    <div class="all-card-product">
+                        <a href="" class="all-card-product-link">
+                            <img class="all-img-product-individual" src="{{product.principal_image.url}}" alt="">
+                            <h3 class="all-title-product">{{product.name}}</h3>
+                            <p class="all-desctiption-product">{{product.description|truncatechars:192}}</p>
+                            <div class="all-car-heart-price-container">
+                                <div class="all-icons-container">
+                                    <div class="all-icons-car-heart">
+                                        <a class="all-icons-car-heart-a" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                                    </div>
+                                    <div class="all-icons-car-heart all-icons-heart">
+                                        <a class="all-icons-car-heart-a" href=""><i class="fa-solid fa-heart"></i></a>
+                                    </div>
+                                </div>
+                                <p class="all-price-product">$ {{product.price|floatformat:0|intcomma}}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="all-pagination">
+
+                <p>paginacion</p>
+
+            </div>
+
+
+        </aside>
+
+    </section>
+    
+</main>
+
+
+{% endblock  %}
+

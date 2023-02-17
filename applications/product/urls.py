@@ -7,5 +7,7 @@ app_name='product_app'
 
 
 urlpatterns = [
-    path('productos/todos', views.all_product, name="all_products")
+    path('todos/categorias/productos/', views.ListAllCategoriesAndProducts.as_view(), name='all_categories_products'),
+    path('todos/categorias/productos/<slug:slug>/', views.list_by_category, name='filtered_by_categories'),
+
 ]

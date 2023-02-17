@@ -6,6 +6,9 @@ from .models import Category, Product, ProductImages, PrincipalProduct
 
 class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ('created',)
+    list_display = ('id', 'name', 'created', 'image', 'slug')
+    search_fields = ('name',)
+    ordering = ('id',)
     
 admin.site.register(Category, CategoryAdmin)
 
@@ -18,6 +21,8 @@ class ProductImageAdmin(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('created',)
+    list_display = ('id', 'name', 'description', 'price', 'principal_image', 'created', 'slug')
+    ordering = ('id',)
     inlines = [ProductImageAdmin]
 
 admin.site.register(Product, ProductAdmin)

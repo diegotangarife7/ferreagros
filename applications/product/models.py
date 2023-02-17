@@ -1,12 +1,20 @@
 from django.db import models
+from django.utils.text import slugify
+
 
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=40, verbose_name='nombre')
+    name = models.CharField(max_length=40, verbose_name='nombre', unique=True)
     description = models.TextField(null=True, blank=True, verbose_name='descripcion')
     created = models.DateTimeField(auto_now_add=True, verbose_name='fecha de creacion')
     image = models.ImageField(upload_to='category', null=True, blank=True, verbose_name='imagen')
+    slug = models.SlugField(max_length=50, unique=True, blank=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -18,13 +26,18 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=50, verbose_name='nombre')
+    name = models.CharField(max_length=50, verbose_name='nombre', unique=True)
     description = models.TextField(verbose_name='descripcion')
-    price = models.DecimalField(decimal_places=3, max_digits=13, verbose_name='precio')
+    price = models.DecimalField(decimal_places=3, max_digits=12, verbose_name='precio')
     principal_image = models.ImageField(upload_to='products', verbose_name='imagen principal')
     created = models.DateTimeField(auto_now_add=True, verbose_name='fecha de creacion')
     categories = models.ManyToManyField(Category, verbose_name='categorias')
-    # implementar descuento de precios
+    slug = models.SlugField(max_length=50, unique=True, blank=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
