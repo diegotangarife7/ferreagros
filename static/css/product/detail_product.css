@@ -30,8 +30,9 @@
 .detail-principal-image-product{
     border: 1px solid #535353;
     padding: 10px; 
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
+    max-height: 483px;
 }
 
 .detail-container-secondary-image-product{

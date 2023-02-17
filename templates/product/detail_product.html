@@ -3,7 +3,7 @@
 {% load humanize %}
 
 
-{% block title %} detail-- {% endblock  %}
+{% block title %} Detalle - {{product.name}} {% endblock  %}
 
 
 
@@ -11,42 +11,34 @@
 
 
 <main class="detail_product_main">
-
-
     <section class="detail-section-detail-buy">
-
         <div class="detail-all-images-product">
             <picture class="detail-container-principal-image-product">
-                <img class="detail-principal-image-product" src="{% static 'images/image_34.png' %}" alt="">
+                <img class="detail-principal-image-product" src="{{product.principal_image.url}}" alt="">
             </picture>
-
             <picture class="detail-container-secondary-image-product">
-                <img class="detail-secondary-image-product" src="{% static 'images/image_34.png' %}" alt="">
-                <img class="detail-secondary-image-product" src="{% static 'images/image_34.png' %}" alt="">
-                <img class="detail-secondary-image-product" src="{% static 'images/image_34.png' %}" alt="">
+                {% for img in list_images %}
+                        <img class="detail-secondary-image-product" src="{{img.images.url}}" alt="">       
+                {% endfor %} 
             </picture>
         </div>
-
         <div class="detail-container-info-product">
             <div class="detail-container-title-and-description">
-                <h2 class="detail-complete-title-h2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, incidunt?</h2>
-                <p class="detail-complete-description-h2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, maxime reprehenderit vero earum obcaecati dignissimos mollitia aperiam praesentium, doloribus voluptatibus voluptatem rem ipsam dolore atque exercitationem voluptates nam consequatur soluta adipisci, fugiat expedita nobis ullam asperiores. Neque quasi nam optio autem ducimus dignissimos qui et, atque ipsum recusandae quam officia?</p>
+                <h2 class="detail-complete-title-h2">{{product.name|title}}</h2>
+                <p class="detail-complete-description-h2">{{product.description|truncatechars:1000}}</p>
             </div>
-
             <div class="detail-container-two-prices">
-                <p class="detail-p-price-current">$87.500.000</p>
+                <p class="detail-p-price-current">${{product.price|floatformat:0|intcomma}}</p>
                 <p class="detail-p-price-old">$99.000.000</p>
             </div>
-
             <div class="detail-container-categories-all">
-                <h3 class="detail-title-h3-categories">Categorias:</h3>
+                <h3 class="detail-title-h3-categories">Categoria:</h3>
                 <ul class="detail-container-list-categories-ul">
-                    <li class="detail-ul-li-category-list">Fumigadoras electricas</li>
-                    <li class="detail-ul-li-category-list">motores</li>
-                    <li class="detail-ul-li-category-list">Prensadoras</li>
+                    {% for category in categories %}
+                        <li class="detail-ul-li-category-list">{{category.name}}</li>
+                    {% endfor %}
                 </ul>
             </div>
-
             <div class="detail-container-add-car-car">
                 <a href="" class="detail-container-link-add-car">
                     <span>
@@ -55,7 +47,6 @@
                     Añadir al carrito
                 </a>
             </div>
-
             <div class="detail-container-link-favorites">
                 <a href="" class="detail-link-add-favotites-a">
                     <span class="detail-button-like-icon">
@@ -64,11 +55,8 @@
                     Añadir a favoritos
                 </a>
             </div>
-
         </div>
-
     </section>
-
 </main>
 
 

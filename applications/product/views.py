@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 
-from .models import Category, Product
+from .models import Category, Product, ProductImages
 
 
 class ListAllCategoriesAndProducts(ListView):
@@ -29,9 +29,28 @@ def list_by_category(request, slug):
     return render(request, 'product/all_categories_products.html', context)
 
 
-def detail_product(request):
-    return render(request, 'product/detail_product.html')
+class DetailProduct(DetailView):
+    model = Product
+    template_name = 'product/detail_product.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        product_url = self.kwargs['slug']
+        product = Product.objects.get(slug=product_url)
+
+        images_product = ProductImages.objects.filter(product=product)
+        images_product = images_product[:3]
+        
+        product_categories = Product.objects.get(id=product.id)
+        categories = product_categories.categories.all()
+        categories = categories[:3]
+
+        context['product'] = product
+        context['list_images'] = images_product
+        context['categories'] = categories
+
+        return context
 
 
 
