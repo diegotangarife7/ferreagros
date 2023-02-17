@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block title %} detail-- {% endblock  %}
+
+
+
+{% block content %}
+
+
+<main class="detail_product_main">
+
+
+    <section class="detail-section-detail-buy">
+
+        <div class="detail-all-images-product">
+            <picture class="detail-container-principal-image-product">
+                <img class="detail-principal-image-product" src="{% static 'images/image_34.png' %}" alt="">
+            </picture>
+
+            <picture class="detail-container-secondary-image-product">
+                <img class="detail-secondary-image-product" src="{% static 'images/image_34.png' %}" alt="">
+                <img class="detail-secondary-image-product" src="{% static 'images/image_34.png' %}" alt="">
+                <img class="detail-secondary-image-product" src="{% static 'images/image_34.png' %}" alt="">
+            </picture>
+        </div>
+
+        <div class="detail-container-info-product">
+            <div class="detail-container-title-and-description">
+                <h2 class="detail-complete-title-h2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, incidunt?</h2>
+                <p class="detail-complete-description-h2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, maxime reprehenderit vero earum obcaecati dignissimos mollitia aperiam praesentium, doloribus voluptatibus voluptatem rem ipsam dolore atque exercitationem voluptates nam consequatur soluta adipisci, fugiat expedita nobis ullam asperiores. Neque quasi nam optio autem ducimus dignissimos qui et, atque ipsum recusandae quam officia?</p>
+            </div>
+
+            <div class="detail-container-two-prices">
+                <p class="detail-p-price-current">$87.500.000</p>
+                <p class="detail-p-price-old">$99.000.000</p>
+            </div>
+
+            <div class="detail-container-categories-all">
+                <h3 class="detail-title-h3-categories">Categorias:</h3>
+                <ul class="detail-container-list-categories-ul">
+                    <li class="detail-ul-li-category-list">Fumigadoras electricas</li>
+                    <li class="detail-ul-li-category-list">motores</li>
+                    <li class="detail-ul-li-category-list">Prensadoras</li>
+                </ul>
+            </div>
+
+            <div class="detail-container-add-car-car">
+                <a href="" class="detail-container-link-add-car">
+                    <span>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </span>
+                    Añadir al carrito
+                </a>
+            </div>
+
+            <div class="detail-container-link-favorites">
+                <a href="" class="detail-link-add-favotites-a">
+                    <span class="detail-button-like-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </span>
+                    Añadir a favoritos
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+{% endblock  %}

@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
 
@@ -28,6 +27,11 @@ def list_by_category(request, slug):
         'all_categories': categories
     }
     return render(request, 'product/all_categories_products.html', context)
+
+
+def detail_product(request):
+    return render(request, 'product/detail_product.html')
+
 
 
 
