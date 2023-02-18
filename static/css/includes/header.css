@@ -156,12 +156,6 @@
 
 
 
-
-
-
-
-
-
 .header-menu-button{
     background: #004D40;
     color: #FFFFFF;
@@ -169,7 +163,8 @@
     font-size: 40px;
     cursor: pointer;
     display: none;
-
+    width: 100%;
+    z-index: 100;
 }
 
 
@@ -177,10 +172,73 @@
 
 
 @media (max-width: 961px){
-    /* .header-menu-button{
-        display: block;
-    } */
+    .header-menu-button{
+        display: flex;
+        justify-content: space-between;
+        height: 70px;
+        align-items: center;
+    }
 
+    .icon-menu{
+        margin-right: 20px;
+    }
+
+    .header{
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        position: fixed;
+        z-index: 100;
+        opacity: 0;
+        top: 70px;
+        pointer-events: none;
+        transition: 0.7s opacity;
+        justify-content: center;
+    }
+
+    .header-container{
+        flex: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-nav{
+        flex: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-ul{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-user{
+        flex: none;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .header-title-link{
+        margin-left: 10px;
+    }
+    .nav__link--show{
+        opacity: 1;
+        pointer-events: unset;
+    }
+
+    .header-close-title-principal{
+        display: none;
+    }
+
+    .ul-li{
+        margin: 32px 0;
+    }
+
+    .nav__menu{
+        font-size: 30px;
+    }
 
 }
 
