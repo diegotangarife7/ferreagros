@@ -13,10 +13,9 @@
     width: 100%;
 }
 
-.container-footer{
+.footer .container-footer{
     display: flex;
     width: 80%;
-    flex-direction: row;
     margin: auto;
     align-items: center;
     flex-direction: column;
@@ -43,9 +42,7 @@
 
 .footer-info-h3{
     display: flex;
-    color: #FFFFFF;
-    font-family: var(--poppins );
-    font-size: 12px;
+   
     padding: 10px;
     flex-wrap: wrap;
     font-weight: 100;
@@ -54,6 +51,9 @@
 
 .info-h3-detail{
     padding: 10px;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-family: var(--poppins );
 }
 
 

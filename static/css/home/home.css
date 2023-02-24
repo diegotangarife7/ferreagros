@@ -720,7 +720,7 @@
 .aditional-info{
     display: flex;
     padding: 10px 5px;
-    align-items: center;
+    align-items: baseline;
 }
 
 .info-company-p{

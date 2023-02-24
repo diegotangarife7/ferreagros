@@ -15,29 +15,62 @@
     </div>
     <nav class="header-nav">
         <ul class="nav-ul">
-            <li class="ul-li"><a class="li-a" href="">Inicio</a></li>
+            <li class="ul-li"><a class="li-a" href="{% url 'home_app:home' %}">Inicio</a></li>
+            <li class="ul-li"><a class="li-a" href="{% url 'product_app:all_categories_products' %}">Productos</a></li>
             <li class="ul-li"><a class="li-a" href="">Fotos</a></li>
-            <li class="ul-li"><a class="li-a" href="">Videos</a></li>
-            <li class="ul-li"><a class="li-a" href="">Nosotros</a></li>
+            <li class="ul-li"><a class="li-a" href="{% url 'home_app:about_us' %}">Nosotros</a></li>
         </ul>
     </nav>
+
     <div class="header-user">
-        <button class="user-a">
+
+        <button class="user-a" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="a-icons">
                 <i class="fa-solid fa-heart"></i>
-            </div>
+            </div> 
         </button>
-        <button class="user-a">
+        <ul class="dropdown-menu dropstart">
+            <p>Tus favoritos</p>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">favoritos 1</a></li>
+            <li><a class="dropdown-item" href="#">favoritos 2</a></li>
+            <li><a class="dropdown-item" href="#">favoritos 3</a></li>
+            <li><a class="dropdown-item" href="#">favoritos 4</a></li>
+            <li><a class="dropdown-item" href="#">favoritos 5</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <a href="">ir a la lista de favoritos</a>
+        </ul>
+
+
+
+        <button class="user-a" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="a-icons">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="amount-product">99</span>
             </div>
         </button>
+        <ul class="dropdown-menu">
+            <p>Tu carrito</p>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Producto 1</a></li>
+            <li><a class="dropdown-item" href="#">Producto 2</a></li>
+            <li><a class="dropdown-item" href="#">Producto 3</a></li>
+            <li><a class="dropdown-item" href="#">Producto 4</a></li>
+            <li><a class="dropdown-item" href="#">Producto 5</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <a href="">Ver tu carrito</a>
+        </ul>
+
+        
+
+
         <button class="user-a">
             <div class="a-icons">
                 <i class="fa-solid fa-user"></i>
             </div>
         </button>
+
+
     </div>
 </header>
 <button class="header-menu-button">

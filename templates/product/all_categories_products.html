@@ -22,21 +22,32 @@
         </div>
     </article>
     <section class="all-section-categories-products-container">
+
+
+
         <div class="all-list-all-categories">
             <ul class="all-list-ul">
                 {% for category in all_categories %}
-                    <li class="all-list-ul-li"><a class="all-list-ul-li-a" href="{% url 'product_app:filtered_by_categories' slug=category.slug %}">{{category|title}}</a></li>
+                    {% if category == selected_category %}
+                        <li class="all-list-ul-li"><a class="all-list-ul-li-a category-selected" href="{% url 'product_app:filtered_by_categories' slug=category.slug %}">{{category|title}}</a></li>
+                    {% else %}
+                        <li class="all-list-ul-li"><a class="all-list-ul-li-a" href="{% url 'product_app:filtered_by_categories' slug=category.slug %}">{{category|title}}</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
-            <a href="{% url 'product_app:all_categories_products' %}">ver todos los productos</a>
+            <a class ="button-all-products-see" href="{% url 'product_app:all_categories_products' %}">
+                ver todos los productos
+            </a>
         </div>
+
+
         <aside class="all-aside-cards-container">
             <div class="all-container-product-pagination">
                 {% for product in all_products %}
                     <div class="all-card-product">
                         <a href="{% url 'product_app:detail_product' slug=product.slug %}" class="all-card-product-link">
                             <img class="all-img-product-individual" src="{{product.principal_image.url}}" alt="">
-                            <h3 class="all-title-product">{{product.name|title}}</h3>
+                            <h3 class="all-title-product">{{product.name|truncatechars:44|title}}</h3>
                             <p class="all-desctiption-product">{{product.description|truncatechars:192|title}}</p>
                             <div class="all-car-heart-price-container">
                                 <div class="all-icons-container">
@@ -53,9 +64,36 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="all-pagination">
-                <p>paginacion</p>
-            </div>
+            
+            {% if is_paginated %}
+                <div class="all-pagination">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a href="?page={{page_obj.previous_page_number}}" class="page-link color-pagination"><<<</a>
+                                </li>
+                            {% endif %}
+                            {% for pagina in paginator.page_range %}
+                                {% if pagina == page_obj.number %}
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link active2" href="">{{pagina}}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item" aria-current="page">
+                                        <a class="page-link color-pagination" href="?page={{pagina}}">{{pagina}}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{page_obj.next_page_number}}" class="page-link color-pagination" href="#">>>></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            {% endif %}
         </aside>
     </section>
 </main>

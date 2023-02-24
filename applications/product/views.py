@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator
 
 
 from .models import Category, Product, ProductImages
@@ -7,22 +8,27 @@ from .models import Category, Product, ProductImages
 
 class ListAllCategoriesAndProducts(ListView):
     template_name = 'product/all_categories_products.html'
-
-    def get_queryset(self):
-        return Category.objects.all()
+    paginate_by = 6
+    context_object_name = 'all_products'
     
+    def get_queryset(self):
+        return Product.objects.all()
+         
     def get_context_data(self, **kwargs):
         context = super(ListAllCategoriesAndProducts, self). get_context_data(**kwargs)
         context['all_categories'] = Category.objects.all()
-        context['all_products'] = Product.objects.all().order_by('-created')
         return context
     
 
+
+
 def list_by_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
     categories = Category.objects.all()
     name_category = Category.objects.get(slug=slug)
     products = name_category.product_set.all().order_by('-created')
     context = {
+        'selected_category':category,
         'all_products': products,
         'all_categories': categories
     }
@@ -51,21 +57,3 @@ class DetailProduct(DetailView):
         context['categories'] = categories
 
         return context
-
-
-
-
-    
-    
-
-
-
-
-    
-
-
-    
-
-
-
-
