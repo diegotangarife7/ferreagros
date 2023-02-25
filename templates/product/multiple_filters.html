@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block title %} Buscar multiples filtros {% endblock  %}
+
+
+{% block content %}
+
+
+<main class="search-main-filter-products">
+    
+    <div class="search-container-search-filter">
+        <div class="search-container-form-filters">
+
+
+            <form action="" class="search-form-inputs">
+            
+                <h2 class="search-form-title">Busqueda</h2>
+
+                <div class="search-container-price-filter">
+                    <h5>Precio:</h5>
+                    <input type="number" placeholder="Precio minimo" class="search-inputs-price-min-max">
+                    <input type="number" placeholder="Precio maximo" class="search-inputs-price-min-max">
+                </div>
+
+                <div class="search-container-select-category">
+                    <h5 class="search-title-of-category">Categoria:</h5>
+                    <select>
+                        <option>Selecciona una categoria</option>
+                        <option>One</option>
+                        <option>Two</option>
+                        <option>Three</option>
+                      </select>
+                </div>
+
+                <div class="search-container-checkbox-ordering">
+                    <h5 class="search-title-of-category">Ordenar:</h5>
+
+                    <label class="search-title-ordering-label" for="">Mayor
+                        <input class="search-input-type-checkbox" type="checkbox">
+                    </label>
+                    
+                    <label class="search-title-ordering-label" for="">Menor
+                        <input class="search-input-type-checkbox" type="checkbox">
+                    </label>
+                </div>
+
+                <div class="search-container-buttons">
+                    <button class="search-button-clean-and-search">Buscar</button>
+                    <button class="search-button-clean-and-search">Limpiar</button>
+                </div>
+
+            </form>
+
+
+            
+        </div>
+    </div>
+
+    <div>
+        {% include 'components/list_all_products.html' %}
+    </div>
+
+</main>
+
+
+
+{% endblock  %}

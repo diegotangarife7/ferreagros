@@ -89,6 +89,7 @@
 .ul-li{
     list-style: none;
     margin: 0 15px;
+    text-align: center;
 }
 
 .li-a{
@@ -101,6 +102,7 @@
 
 .li-a:hover{
     color: #dcdbdb;
+    border-bottom: 1px solid #FFFFFF;
 }
 
 .header-user{

@@ -1,0 +1,24 @@
+{% load humanize %}
+
+<div class="all-container-product-pagination">
+    {% for product in all_products %}
+        <div class="all-card-product">
+            <a href="{% url 'product_app:detail_product' slug=product.slug %}" class="all-card-product-link">
+                <img class="all-img-product-individual" src="{{product.principal_image.url}}" alt="">
+                <h3 class="all-title-product">{{product.name|truncatechars:44|title}}</h3>
+                <p class="all-desctiption-product">{{product.description|truncatechars:192|title}}</p>
+                <div class="all-car-heart-price-container">
+                    <div class="all-icons-container">
+                        <div class="all-icons-car-heart">
+                            <a class="all-icons-car-heart-a" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                        </div>
+                        <div class="all-icons-car-heart all-icons-heart">
+                            <a class="all-icons-car-heart-a" href=""><i class="fa-solid fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <p class="all-price-product">${{product.price|floatformat:0|intcomma}}</p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

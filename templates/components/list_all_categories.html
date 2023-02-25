@@ -1,0 +1,12 @@
+<ul class="all-list-ul">
+    {% for category in all_categories %}
+        {% if category == selected_category %}
+            <li class="all-list-ul-li"><a class="all-list-ul-li-a category-selected" href="{% url 'product_app:filtered_by_categories' slug=category.slug %}">{{category|title}}</a></li>
+        {% else %}
+            <li class="all-list-ul-li"><a class="all-list-ul-li-a" href="{% url 'product_app:filtered_by_categories' slug=category.slug %}">{{category|title}}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<a class ="button-all-products-see" href="{% url 'product_app:all_categories_products' %}">
+    Ver todos los productos
+</a>

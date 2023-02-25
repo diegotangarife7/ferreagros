@@ -20,8 +20,6 @@ class ListAllCategoriesAndProducts(ListView):
         return context
     
 
-
-
 def list_by_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     categories = Category.objects.all()
@@ -57,3 +55,13 @@ class DetailProduct(DetailView):
         context['categories'] = categories
 
         return context
+
+
+
+
+class MultipleFilters(ListView):
+    template_name = 'product/multiple_filters.html'
+    model = Product
+    context_object_name = 'all_products'
+
+

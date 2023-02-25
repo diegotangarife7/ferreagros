@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --poppins:'Poppins', sans-serif;
+}
+
+.search-main-filter-products{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 50px auto;
+}
+
+.search-container-search-filter{
+    display: flex;
+    justify-content: center;
+}
+
+.search-container-form-filters{
+    border: 1px solid #3D9A67;
+    padding: 20px;
+}
+
+.search-form-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.search-form-title{
+    font-family: var(--poppins);
+    font-size: 32px;
+    text-align: center;
+
+}
+
+.search-container-price-filter{
+    padding: 10px 0;
+}
+
+.search-inputs-price-min-max{
+    outline: none;
+}
+
+.search-container-select-category{
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-title-of-category{
+    margin: 0;
+}
+
+.search-container-checkbox-ordering{
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px 0;
+    align-items: center;
+}
+
+.search-title-ordering-label{
+    font-size: 16px;
+    font-family: var(--poppins);
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input-type-checkbox{
+    margin: 5px;
+}
+
+
+.search-container-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.search-button-clean-and-search{
+    padding: 5px 10px;
+    border: none;
+    background: #3D9A67;
+    color: #ffffff;
+}
+
+.search-button-clean-and-search:hover{
+    opacity: 0.8;
+}
+
+
+@media (max-width: 500px){
+    .search-container-price-filter{
+        display: flex;
+        flex-direction: column;
+    }
+    .search-inputs-price-min-max {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 345px){
+    .search-container-form-filters{
+        padding: 5px;
+    }
+}
