@@ -81,6 +81,7 @@
 .search-container-buttons{
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 
 .search-button-clean-and-search{

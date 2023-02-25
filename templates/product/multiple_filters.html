@@ -10,52 +10,42 @@
 
 
 <main class="search-main-filter-products">
-    
     <div class="search-container-search-filter">
         <div class="search-container-form-filters">
-
-
-            <form action="" class="search-form-inputs">
-            
+            <form action="" class="search-form-inputs" method="GET">
                 <h2 class="search-form-title">Busqueda</h2>
-
                 <div class="search-container-price-filter">
                     <h5>Precio:</h5>
-                    <input type="number" placeholder="Precio minimo" class="search-inputs-price-min-max">
-                    <input type="number" placeholder="Precio maximo" class="search-inputs-price-min-max">
+                    <input id="price_min" name="price_min" type="number" placeholder="Precio minimo" class="search-inputs-price-min-max">
+                    <input id="price_max" name="price_max" type="number" placeholder="Precio maximo" class="search-inputs-price-min-max">
                 </div>
-
                 <div class="search-container-select-category">
                     <h5 class="search-title-of-category">Categoria:</h5>
-                    <select>
-                        <option>Selecciona una categoria</option>
-                        <option>One</option>
-                        <option>Two</option>
-                        <option>Three</option>
+                    <select id="category_select" name="category_select">
+                        <option></option>
+                        {% for category in all_categories %}
+                            <option>{{category}}</option>
+                        {% endfor %}
                       </select>
                 </div>
-
                 <div class="search-container-checkbox-ordering">
                     <h5 class="search-title-of-category">Ordenar:</h5>
-
                     <label class="search-title-ordering-label" for="">Mayor
-                        <input class="search-input-type-checkbox" type="checkbox">
+                        <input id="greader" name="greader" class="search-input-type-checkbox" type="checkbox">
                     </label>
-                    
                     <label class="search-title-ordering-label" for="">Menor
-                        <input class="search-input-type-checkbox" type="checkbox">
+                        <input id="minor" name="minor" class="search-input-type-checkbox" type="checkbox">
                     </label>
                 </div>
-
                 <div class="search-container-buttons">
-                    <button class="search-button-clean-and-search">Buscar</button>
-                    <button class="search-button-clean-and-search">Limpiar</button>
+                    <button type="submit" class="search-button-clean-and-search">Buscar</button>
                 </div>
-
+                {% if errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{errors}}
+                    </div>
+                {% endif %}
             </form>
-
-
-            
         </div>
     </div>
 
