@@ -6,9 +6,6 @@
 {% block title %} todos los productos {% endblock  %}
 
 
-
-
-
 {% block content %}
 
 
@@ -21,19 +18,15 @@
             <p class="all-description-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
         </div>
     </article>
-
     <section class="all-section-categories-products-container">
-
         <div class="all-list-all-categories">
             {% include 'components/list_all_categories.html' %}
         </div>
-
         <aside class="all-aside-cards-container">
             {% include 'components/list_all_products.html' %}
 
             {% include 'components/pagination.html' %}
         </aside>
-
     </section>
 </main>
 

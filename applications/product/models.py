@@ -29,6 +29,7 @@ class Product(models.Model):
     name = models.CharField(max_length=50, verbose_name='nombre', unique=True)
     description = models.TextField(verbose_name='descripcion')
     price = models.DecimalField(decimal_places=3, max_digits=12, verbose_name='precio')
+    discounted_price = models.DecimalField(decimal_places=3, max_digits=12, default=0, verbose_name='precio con descuento incluido')
     principal_image = models.ImageField(upload_to='products', verbose_name='imagen principal')
     created = models.DateTimeField(auto_now_add=True, verbose_name='fecha de creacion')
     categories = models.ManyToManyField(Category, verbose_name='categorias')
@@ -50,7 +51,7 @@ class Product(models.Model):
 
 class ProductImages(models.Model):
     images = models.ImageField(upload_to='products', verbose_name='imagenes')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images') # con este related_name es como se manejan las imagnes, por ejemplo . Product.images.filter <- example https://youtu.be/_0l_ZalAg6Q?t=753
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images') 
         
 
 class PrincipalProduct(models.Model):

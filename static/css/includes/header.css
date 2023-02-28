@@ -79,6 +79,8 @@
 
 .header .header-nav{
     flex: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .nav-ul{
@@ -229,6 +231,7 @@
     .nav__link--show{
         opacity: 1;
         pointer-events: unset;
+        justify-content: start;
     }
 
     .header-close-title-principal{

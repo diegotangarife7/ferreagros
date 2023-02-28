@@ -12,7 +12,7 @@ class ListAllCategoriesAndProducts(ListView):
     context_object_name = 'all_products'
     
     def get_queryset(self):
-        return Product.objects.all()
+        return Product.objects.all().order_by('-created')
          
     def get_context_data(self, **kwargs):
         context = super(ListAllCategoriesAndProducts, self). get_context_data(**kwargs)
@@ -67,10 +67,6 @@ def multiple_filters(request):
     all_categories = Category.objects.all()
     all_products = Product.objects.all()   
     errors = []
-   
-    if price_min != None and len(price_min) > 0:
-        if int(price_min) < 0:
-            errors.append('Intenta con un valor positivo 😡')
 
     if price_min and price_max and category_select and greader:
         all_products = Product.objects.filter(
@@ -118,9 +114,12 @@ def multiple_filters(request):
         ).order_by('price')
 
     elif price_min and price_max:
-        all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(price__lte=price_max)
-        )
+        try:
+            all_products = Product.objects.filter(
+                Q(price__gte=price_min) & Q(price__lte=price_max)
+            )
+        except:
+            errors.append('ha ocurrido un errror //')
 
     elif price_min and category_select:
         all_products = Product.objects.filter(
@@ -167,21 +166,31 @@ def multiple_filters(request):
             categories__name=category_select
         )
 
-    elif price_min:
-        all_products = Product.objects.filter(
-            price__gte=price_min
-        )
-
     elif price_max:
-        all_products = Product.objects.filter(
-            price__lte=price_max
-        )
+        try:
+            all_products = Product.objects.filter(
+                price__lte=price_max
+            )
+        except:
+            errors.append('ha ocurrido un errror --')
 
     elif greader == 'on':
         all_products = Product.objects.all().order_by('-price')
 
     elif minor == 'on':
         all_products = Product.objects.all().order_by('price')
+    
+    elif price_min:   
+        if price_min is not None and len(price_min) > 0:
+            try:
+                if int(price_min) < 0:
+                    errors.append('Intenta con un valor positivo 😡')
+                else:
+                    all_products = Product.objects.filter(
+                        price__gte=price_min
+                    )
+            except:
+                errors.append('ha ocurrido un errror')
 
     if len(all_products) == 0:
         errors.append('No se encontro ningun producto relacionado con tu busqueda')
@@ -191,7 +200,4 @@ def multiple_filters(request):
         'all_products': all_products,
         'errors': " ".join(errors),
     }
-
     return render(request, 'product/multiple_filters.html', context)
-
-

@@ -22,7 +22,7 @@ class ProductImageAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('created',)
     list_display = ('id', 'name', 'description', 'price', 'principal_image', 'created', 'slug')
-    ordering = ('id',)
+    ordering = ('-created',)
     inlines = [ProductImageAdmin]
 
 admin.site.register(Product, ProductAdmin)
