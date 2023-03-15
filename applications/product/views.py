@@ -42,7 +42,7 @@ class DetailProduct(DetailView):
         
         product_url = self.kwargs['slug']
         product = Product.objects.get(slug=product_url)
-
+        
         images_product = ProductImages.objects.filter(product=product)
         images_product = images_product[:3]
         
