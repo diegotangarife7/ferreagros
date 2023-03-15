@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('applications.home.urls')),
     path('', include('applications.product.urls')),
     path('', include('applications.cart.urls')),
+    path('', include('applications.users.urls')),
+
 
                      
 
