@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/home/about_us.css' %}">
     <link rel="stylesheet" href="{% static 'css/product/detail_product.css' %}">
     <link rel="stylesheet" href="{% static 'css/product/multiple_filters.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users/register.css' %}">
  
     <title>{% block title %}  {% endblock  %}</title>
 
@@ -26,7 +27,9 @@
 </head>
 <body>
 
-    {% include 'includes/header.html' %}
+    {% block header %}
+        {% include 'includes/header.html' %}
+    {% endblock  %}
    
 
 
@@ -36,10 +39,12 @@
     
     {% endblock  %}
 
+
     
-
-    {% include 'includes/footer.html' %}
-
+    
+    {% block footer %}
+        {% include 'includes/footer.html' %}
+    {% endblock  %}
 
 
     

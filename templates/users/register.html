@@ -1,14 +1,74 @@
-<h1>formulario de registro</h1>
+
+{% extends 'base/base.html' %}
+
+{% block title %}Registrarse{% endblock  %}
+
+
+{% block header %}
+{% endblock  %}
 
 
 
-<form action="" method="POST">{% csrf_token %}
+{% block content %}
 
 
 
-    {{form.as_p}}
+<div class="register-form-user">
+
+    <h2 class="register-form-title">Registro</h2>
+
+    <form method="POST" class="register-form-inputs"> {% csrf_token %}
+        <div class="mb-3">
+          {{form.first_name}}
+        </div>
+        <div class="mb-3">
+          {{form.genre}}
+        </div>
+
+        <div class="mb-3">
+            {{form.email}}
+        </div>
+       
+         {% if form.email.errors %} 
+            <div class="alert alert-danger" role="alert">
+                {{form.email.errors}}
+            </div>
+        {% endif %} 
+        
+        <div class="mb-3">
+            {{form.password_1}}
+        </div>
+        <div class="mb-3">
+            {{form.password_2}}
+        </div>
+        {% for e in form.password_2.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{e}}
+        </div>
+        {% endfor %}
+
+        {% for e in form.password_1.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{e}}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary personalized-registration-button">Registarse</button>
+    </form>
+
+</div> 
 
 
-    <button type="submit">Registarse</button>
 
-</form>
+
+
+{% endblock  %}
+
+
+
+
+{% block footer %}
+{% endblock  %}
+
+
+
