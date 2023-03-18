@@ -2,12 +2,6 @@ from django import forms
 
 from .models import User
 
-from django.core.validators import validate_email
-
-from django.contrib import messages
-
-
-
 
 class UserRegisterForm(forms.ModelForm):
 
@@ -18,7 +12,6 @@ class UserRegisterForm(forms.ModelForm):
             attrs={
                 'placeholder': 'Contraseña',
                 'class': 'form-control'
-                
             }
         )
     )
@@ -75,7 +68,8 @@ class UserRegisterForm(forms.ModelForm):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este correo ya ha sido registrado. Por favor, use otro.')
-        
+
+
     def clean_password_2(self):
         if self.cleaned_data['password_1'] != self.cleaned_data['password_2']:
             self.add_error('password_2', 'Las contraseñas no coinciden') 

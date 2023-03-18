@@ -33,7 +33,9 @@
 
 .personalized-registration-button:hover{
     background: #009980;
-    
+}
+.personalized-registration-button:active{
+    background: #009980 !important;
 }
 
 .register-form-inputs{

@@ -12,7 +12,7 @@ class User(AbstractUser):
         ('O', 'Otro')
     )
     username = models.CharField(max_length=20, blank=True, null=True)
-    email = models.EmailField(unique=True, verbose_name='Correo', blank=False, null=False)
+    email = models.EmailField(unique=True, verbose_name='Correo')
     genre = models.CharField(max_length=1, choices = GENRE_CHOICES, verbose_name='Genero', blank=True, null=True)
 
     USERNAME_FIELD = 'email'

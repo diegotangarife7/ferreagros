@@ -7,7 +7,7 @@ from .forms import UserRegisterForm
 from .models import User
 
 
-class UserRegisterForm(FormView):
+class UserRegisterFormView(FormView):
     template_name = 'users/register.html'
     form_class = UserRegisterForm
     success_url = reverse_lazy('home_app:home')
