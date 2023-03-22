@@ -59,16 +59,16 @@ class UserRegisterForm(forms.ModelForm):
             )
         }
 
-        # required = {
-        #     'first_name':True,
-        #     'genre': False
-        # }
-    
+     
     def clean_email(self):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este correo ya ha sido registrado. Por favor, use otro.')
-
+        return email
+    
+    def clean_first_name(self):
+        if len(self.cleaned_data['first_name']) <= 5:
+            self.add_error('first_name', 'El nombre debe contener al menos 6 caracteres')
 
     def clean_password_2(self):
         if self.cleaned_data['password_1'] != self.cleaned_data['password_2']:

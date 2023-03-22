@@ -201,3 +201,4 @@ def multiple_filters(request):
         'errors': " ".join(errors),
     }
     return render(request, 'product/multiple_filters.html', context)
+
