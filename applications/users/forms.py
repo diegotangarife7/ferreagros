@@ -1,27 +1,28 @@
 from django import forms
 
+
 from .models import User
 
 
-class UserRegisterForm(forms.ModelForm):
 
-    password_1 = forms.CharField(
-        label='Contraseña',
+class UserRegisterForm(forms.ModelForm):
+    password1 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Contraseña',
+                'type': 'password',
                 'class': 'form-control'
             }
         )
     )
 
-    password_2 = forms.CharField(
-        label='Confirmaciíon de contraseña',
+    password2 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Confirmacion de contraseña',
+                'placeholder': 'Confirmar Contraseña',
+                'type': 'password',
                 'class': 'form-control'
             }
         )
@@ -30,50 +31,41 @@ class UserRegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
+
         fields = (
-            'first_name',
-            'genre',
             'email',
+            'name'
         )
 
-        labels = {
-            'first_name': 'Nombre',
-        }
-
         widgets = {
-            'first_name': forms.TextInput(attrs={
-                    'placeholder': 'Nombre',
-                    'class': 'form-control',
-                }
-            ),
 
-            'genre': forms.Select(attrs={
-                    'class': 'form-select',
-                }
-            ),
+            'email': forms.EmailInput(
+                attrs={
+                        'placeholder': 'Correo',
+                        'type': "email",
+                        'class': 'form-control',
+                    }
+                ),
 
-            'email': forms.EmailInput(attrs={
-                    'placeholder': 'Example@example.com',
-                    'class': 'form-control'
-                }
-            )
+            'name': forms.TextInput(
+                attrs={
+                        'placeholder': 'Nombre',
+                        'type': "text",
+                        'class': 'form-control',
+                    }
+                ),
         }
 
-     
+
+    def clean_password2(self):
+        if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+            self.add_error('password2', 'Las contraseñas no coinciden')
+        
+        if len(self.cleaned_data['password1']) <= 5:
+            self.add_error('password1', 'Utiliza una contraseña de 6 o mas caracteres')
+    
     def clean_email(self):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError('Este correo ya ha sido registrado. Por favor, use otro.')
+            raise forms.ValidationError('Este correo electrónico ya está en uso.')
         return email
-    
-    def clean_first_name(self):
-        if len(self.cleaned_data['first_name']) <= 5:
-            self.add_error('first_name', 'El nombre debe contener al menos 6 caracteres')
-
-    def clean_password_2(self):
-        if self.cleaned_data['password_1'] != self.cleaned_data['password_2']:
-            self.add_error('password_2', 'Las contraseñas no coinciden') 
-        if len(self.cleaned_data['password_1']) <= 7:
-            self.add_error('password_1', 'La contraseña debe ser de minimo 8 catacteres') 
-
-
