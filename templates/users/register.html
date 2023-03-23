@@ -36,7 +36,7 @@
 
         <div class="mb-3">
             {{form.password1}}
-            <div id="emailHelp" class="form-text">utiliza una contraseña de minimo 6 caracteres</div>
+            <div id="emailHelp" class="form-text">Utiliza una contraseña de mínimo 6 caracteres</div>
          </div>
 
         {% if form.errors.password1 %}
@@ -54,7 +54,11 @@
         </div>
         {% endif %}
 
-        <button type="submit" class="btn btn-primary personalized-registration-button">Registarse</button>
+        <div class="mb-3 pt-3 text-center">
+            <h6>¿Ya tienes una cuenta?  <a class="badge text-bg-success" href="{% url 'users_app:user_login' %}">Iniciar Sesión</a></h6>
+        </div>
+
+        <button type="submit" class="btn btn-primary personalized-registration-button">Registrarse</button>
 
     </form>
 

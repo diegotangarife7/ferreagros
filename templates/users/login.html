@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock  %}
+
+
+{% block header %}
+{% endblock  %}
+
+
+
+{% block content %}
+
+
+<div class="register-form-user">
+    <h2 class="register-form-title">FerreAgros</h2>
+    <form method="POST" class="register-form-inputs"> {% csrf_token %}
+        <div class="mb-3">
+            {{form.email}}
+        </div>
+        <div class="mb-3">
+            {{form.password}}
+        </div>
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger text-center">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="mb-3 pt-3 text-center">
+            <h6>¿No tienes una cuenta?  <a class="badge text-bg-success" href="{% url 'users_app:user_register' %}">Registrarse</a></h6>
+        </div>
+
+        <button type="submit" class="btn btn-primary personalized-registration-button">Iniciar Sesion</button>
+    </form>
+</div> 
+
+
+{% endblock  %}
+
+
+
+
+{% block footer %}
+{% endblock  %}
+

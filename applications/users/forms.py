@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth import authenticate
 
 from .models import User
 
@@ -27,7 +27,6 @@ class UserRegisterForm(forms.ModelForm):
             }
         )
     )
-
 
     class Meta:
         model = User
@@ -69,3 +68,45 @@ class UserRegisterForm(forms.ModelForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este correo electrónico ya está en uso.')
         return email
+
+
+
+class LoginForm(forms.Form):
+    email = forms.CharField(
+        label = 'Correo',
+        required = True,
+        widget = forms.EmailInput(
+            attrs={
+                'placeholder': 'Correo...',
+                'class': 'form-control',
+            }
+        )
+    )
+
+    password = forms.CharField(
+        label = 'Contraseña',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Contraseña...',
+                'class': 'form-control',
+            }
+        )
+    )
+
+    def clean(self):
+        cleaned_fata = super().clean()
+
+        email = self.cleaned_data['email']
+        password = self.cleaned_data['password']
+
+        if not authenticate(email=email, password=password):
+            raise forms.ValidationError('Los datos no son correctos')
+        
+        return self.cleaned_data
+    
+    def non_field_errors(self):
+        errors = super().non_field_errors()
+        if 'Los datos no son correctos' in errors:
+            return errors
+        return []
