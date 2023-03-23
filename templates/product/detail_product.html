@@ -28,8 +28,12 @@
                 <p class="detail-complete-description-h2">{{product.description|truncatechars:1000}}</p>
             </div>
             <div class="detail-container-two-prices">
-                <p class="detail-p-price-current">${{product.price|floatformat:0|intcomma}}</p>
-                <p class="detail-p-price-old">$99.000.000</p>
+                {% if product.discounted_price %}
+                    <p class="detail-p-price-current">${{product.discounted_price|floatformat:0|intcomma}}</p>
+                    <p class="detail-p-price-old">${{product.price|floatformat:0|intcomma}}</p>
+                {% else %}
+                    <p class="detail-p-price-current">${{product.price|floatformat:0|intcomma}}</p>
+                {% endif %}
             </div>
             <div class="detail-container-categories-all">
                 <h3 class="detail-title-h3-categories">Categoria:</h3>

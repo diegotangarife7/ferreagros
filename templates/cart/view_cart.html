@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Tú carrito {% endblock  %}
+
+
+
+{% block content %}
+
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for products in sale %}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{products}}</td>
+        <td>{{products.quantity}}</td>
+        <td>sadfasdf</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+{% endblock  %}
