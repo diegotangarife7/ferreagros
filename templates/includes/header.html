@@ -38,19 +38,24 @@
         <button class="user-a" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="a-icons">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span class="amount-product">99</span>
+                <span class="amount-product">{{total_of_products}}</span>
             </div>
         </button>
-        <ul class="dropdown-menu">
-            <p>Tu carrito</p>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Producto 1</a></li>
-            <li><a class="dropdown-item" href="#">Producto 2</a></li>
-            <li><a class="dropdown-item" href="#">Producto 3</a></li>
-            <li><a class="dropdown-item" href="#">Producto 4</a></li>
-            <li><a class="dropdown-item" href="#">Producto 5</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <a href="">Ver tu carrito</a>
+        <ul class="dropdown-menu text-center">
+            <p class="font-weight-bold text-center text-dark">Tu Carrito <i class="fa-solid fa-car"></i></p> 
+            {% if products_cart %}
+                <li><hr class="dropdown-divider"></li>
+                {% for item in products_cart %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-2" href="#">{{item.product|truncatechars:25|title}}<span class="badge bg-success rounded-pill">{{item.quantity}}</span> </li>
+                    <li><hr class="dropdown-divider"></li>
+                {% endfor %}
+            <a class="badge text-bg-success p-2" href="{% url 'cart_app:cart_sale' %}">Ver tu Carrito</a>
+            {% else %}
+                <div class="alert alert-danger mx-3" role="alert">
+                    No tienes productos en el carrito
+                </div>
+                <a class="badge text-bg-success p-2" href="{% url 'product_app:all_categories_products' %}">Agrega productos</a>
+            {% endif %}
         </ul>
 
         

@@ -1,40 +1,46 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load humanize %}
 
-{% block title %} Tú carrito {% endblock  %}
+{% block title %} Tu carrito {% endblock  %}
 
 
 
 {% block content %}
 
-
-
-
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Producto</th>
-        <th scope="col">Cantidad</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-    {% for products in sale %}
-      <tr>
-        <th scope="row">1</th>
-        <td>{{products}}</td>
-        <td>{{products.quantity}}</td>
-        <td>sadfasdf</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-
-
-
-
-
-
+<div class="cart-container-table">
+      {% if items %}
+        <p class="cart-total-payable">Total a pagar: ${{total_sale|floatformat:0|intcomma}} </p>
+        <table class="table cart-table-table">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">PRODUCTO</th>
+                <th class="text-center" scope="col">CANTIDAD</th>
+                <th class="text-center" scope="col">SUMAR</th>
+                <th class="text-center" scope="col">RESTAR</th>
+                <th class="text-center" scope="col">TOTAL POR PRODUCTO</th>
+                <th class="text-center" scope="col">ELIMINAR</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td>{{item.product|truncatechars:40}}</td>
+                    <td class="text-center">{{item.quantity}}</td>
+                    <td class="text-center"><a class="btn btn-success" href="{% url 'cart_app:add_product' id=item.key %}"><i class="fa-solid fa-plus"></i></a></td>
+                    <td class="text-center"><a class="btn btn-danger" href="{% url 'cart_app:subtract_product' id=item.key %}"><i class="fa-solid fa-minus"></i></a></td>
+                    <td class="text-center">$ {{item.total|floatformat:0|intcomma}}</td>
+                    <td class="text-center"><a class="btn btn-danger" href="{% url 'cart_app:delete_product' id=item.key %}"><i class="fa-solid fa-trash-can"></i></a></td>  
+                  </tr>
+                {% endfor %}
+                {% else %}
+                  <div class="cart-div-no-products">
+                    <p class="cart-text-no-products">Selecciona Tus Productos Favoritos</p>
+                    <a class="cart-a-all-products" href="{% url 'product_app:all_categories_products' %}">Agregar productos</a>
+                  </div>
+                {% endif %}
+            </tbody>
+        </table>
+</div>
 
 {% endblock  %}
