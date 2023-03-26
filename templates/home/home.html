@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} inicio {% endblock  %}
+{% block title %} Inicio {% endblock  %}
 
 {% block content %}
 
@@ -41,12 +41,12 @@
     <section class="main-two-section">
         <div class="section-container-products">
             <div class="products-description">
-                <h2 class="description-title-h2">Nuestros productos</h2>
-                <p class="description-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2 class="description-title-h2">Herramientas</h2>
+                <p class="description-description">Potencia tus proyectos con las mejores herramientas de la región. Contamos con un amplio catálogo para que encuentres lo que necesitas. ¡Haz realidad tus proyectos con nosotros!.</p>
             </div>
             <div class="products-name">
-                <h2 class="name-title">Nombre del producto</h2>
-                <p class="name-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2 class="name-title">Soluciones</h2>
+                <p class="name-description">Encuentra la solución perfecta para tus necesidades. En nuestra ferretería te ofrecemos una amplia variedad de productos y servicios para resolver tus problemas de manera eficiente. ¡Confía en nosotros y déjanos ayudarte!.</p>
             </div>
         </div>
     </section>
@@ -159,43 +159,53 @@
         <div class="container-left-form">
             <div class="container-form-info">
                 <h2 class="info-title-contact">Contactanos</h2>
-                <p class="info-p-contact">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <p class="info-p-contact">Ponte en contacto con nosotros para cualquier duda o consulta que tengas. ¡Estamos para ayudarte!</p>
             </div>
-            <form action="" class="form-form-email-information">
+
+            <form action="" class="form-form-email-information" method="POST">{% csrf_token %}
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            <p class="text-center">{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
                 <div class="information-name-email">
                     <div class="input-user-name-email">
                         <label class="style-label-text" for="">Nombre</label>
-                        <input type="text" class="style-inputs-form" maxlength="">
+                        {{form.name}}
                     </div>
                     <div class="input-user-name-email">
                         <label class="style-label-text" for="">Correo</label>
-                        <input class="style-inputs-form" type="email" maxlength="">
+                        {{form.email}}
                     </div>
                 </div>
                 <div class="information-name-email">
                     <div class="input-user-name-email">
-                        <label class="style-label-text" for="">Telefono</label>
-                        <input class="style-inputs-form" type="number" max="">
+                        <label class="style-label-text" for="">Teléfono</label>
+                        {{form.phone}}
                     </div>
                     <div class="input-user-name-email">
                         <label class="style-label-text" for="">Asunto</label>
-                        <input class="style-inputs-form" type="text" maxlength="">
+                        {{form.subject}}
                     </div>
                 </div>
                 <div class="container-text-input-textarea">
                     <div class="input-textarea-message">
                         <label class="style-label-text" for="">Mensaje</label>
-                        <textarea class="style-inputs-form input-textarea-user"></textarea>
+                        {{form.message}}
                     </div>
                 </div>
                 <div class="form-text-container-checbox">
                     <div class="container-check-notifications">
-                        <input type="checkbox">
-                        <p class="text-notifications">Recibir notificaciones sobre productos nuevos y promociones</p>
+                        {{form.notification}}
+                        <p class="text-notifications">Recibir notificaciones sobre productos nuevos y promociones.</p>
                     </div>
                     <div class="container-booton-send">
                         <i class="fa-regular fa-paper-plane"></i>
-                        <button class="style-botton-send">Enviar</button>
+                        <button class="style-botton-send" type="submit">Enviar</button>
                     </div>
                 </div>
             </form>
@@ -206,7 +216,7 @@
                 </div>
                 <div class="aditional-info">
                     <i class="fa-solid fa-location-dot icon-color"></i>
-                    <p class="info-company-p">cartago valle. Cra 12 #34-56 </p> 
+                    <p class="info-company-p">bogota bogo. Cra 12 #34-56 </p> 
                 </div>
                 <div class="aditional-info">
                     <i class="fa-regular fa-clock icon-color"></i>
@@ -226,7 +236,7 @@
     <section class="main-six-section">
         <div class="ubication-google-maps">
             <h2 class="maps-title">Ubicacion Satelital</h2>
-            <p class="google-maps-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="google-maps-p">Encuentra nuestra ubicación en el siguiente mapa. ¡Te esperamos! Ven a visitarnos y descubre nuestros productos y servicios de alta calidad.</p>
             <div class="container-map-ubication">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.39280701257!2d-74.24789593340266!3d4.64862594233483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2zQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1674888866645!5m2!1ses!2sco" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>

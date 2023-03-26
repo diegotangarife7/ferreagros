@@ -7,10 +7,10 @@
     </div>
     <nav class="header-nav">
         <ul class="nav-ul">
-            <li class="ul-li"><a class="li-a" href="{% url 'home_app:home' %}">Inicio</a></li>
-            <li class="ul-li"><a class="li-a" href="{% url 'product_app:all_categories_products' %}">Productos</a></li>
-            <li class="ul-li"><a class="li-a" href="{% url 'product_app:multiple_filters' %}">Filtrar Productos</a></li>
-            <li class="ul-li"><a class="li-a" href="{% url 'home_app:about_us' %}">Sobre nosotros</a></li>
+            <li class="ul-li"><a {% if request.path == '/' %} class="li-a-active"                            {% else %} class="li-a" {% endif %} href="{% url 'home_app:home' %}">Inicio</a></li>
+            <li class="ul-li"><a {% if request.path == '/todos/categorias/productos/' %} class="li-a-active" {% else %} class="li-a" {% endif %} href="{% url 'product_app:all_categories_products' %}">Productos</a></li>
+            <li class="ul-li"><a {% if request.path == '/busqueda/filtros/' %} class="li-a-active"           {% else %} class="li-a" {% endif %} href="{% url 'product_app:multiple_filters' %}">Filtrar Productos</a></li>
+            <li class="ul-li"><a {% if request.path == '/nosotros/' %} class="li-a-active"                   {% else %} class="li-a" {% endif %} href="{% url 'home_app:about_us' %}">Sobre nosotros</a></li>
         </ul>
     </nav>
 
@@ -33,7 +33,7 @@
             <a href="">ir a la lista de favoritos</a>
         </ul>
 
-
+        
 
         <button class="user-a" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="a-icons">
@@ -54,7 +54,7 @@
                 <div class="alert alert-danger mx-3" role="alert">
                     No tienes productos en el carrito
                 </div>
-                <a class="badge text-bg-success p-2" href="{% url 'product_app:all_categories_products' %}">Agrega productos</a>
+                <a class="badge text-bg-success p-2" href="{% url 'product_app:all_categories_products' %}">Agregar productos</a>
             {% endif %}
         </ul>
 

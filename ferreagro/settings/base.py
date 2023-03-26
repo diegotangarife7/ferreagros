@@ -13,7 +13,7 @@ def get_secret(secret_name, secrets=secret):
     try:
         return secrets[secret_name]
     except:
-        msg = f"the variable {secret_name} does not exist "
+        msg = f'the variable {secret_name} does not exist'
         raise ImproperlyConfigured(msg)
 
 
