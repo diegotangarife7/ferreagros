@@ -64,6 +64,8 @@ def multiple_filters(request):
     greader = request.GET.get('greader',)
     minor = request.GET.get('minor',)
 
+    kword = request.GET.get('kword',)
+
     all_categories = Category.objects.all()
     all_products = Product.objects.all()   
     errors = []
@@ -191,6 +193,9 @@ def multiple_filters(request):
                     )
             except:
                 errors.append('ha ocurrido un errror')
+
+    elif kword:
+        all_products = Product.objects.filter(name__icontains = kword)
 
     if len(all_products) == 0:
         errors.append('No se encontro ningun producto relacionado con tu busqueda')

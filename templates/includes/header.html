@@ -4,6 +4,14 @@
         <div class="container-title">
             <a href="{% url 'home_app:home' %}" class="header-title-link header-close-title-principal">FerreAgros</a>
         </div>
+        <form class="container-search" method="GET" action="{% url 'product_app:multiple_filters' %}">
+            <div class="search-input">
+                <input class="input-input" id="kword" name="kword" type="text" placeholder="Buscar...">
+            </div>
+            <button href="" class="search-icon" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i> 
+            </button>
+        </form>
     </div>
     <nav class="header-nav">
         <ul class="nav-ul">

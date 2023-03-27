@@ -71,6 +71,8 @@
     color: #FFFFFF;
     margin-left: 5px;
     font-size: 20px;
+    border: none;
+    background: #407A70;
 }
 
 .search-icon:hover{

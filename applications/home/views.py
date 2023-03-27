@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
 
+
+from applications.product.models import Product
 from .forms import ContactForm
+
 
 
 class HomeView(TemplateView):
@@ -46,9 +49,9 @@ class HomeView(TemplateView):
         else:
             messages.warning(request, 'Ha ocurrido un error, asegúrate de llenar todos los campos correctamente.')
             return redirect('home_app:home')
-            
-    
-   
+
+
+
 
 
 class AboutUs(TemplateView):
