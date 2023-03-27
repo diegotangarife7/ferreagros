@@ -33,7 +33,7 @@ class Favorite(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Producto')
 
     def __str__(self):
-        return self.user.name + ' - ' + self.product.name
+        return self.user.name + ' - ' + self.product.name + ' id:' + str(self.id)
     
     class Meta:
         db_table = 'Favoritos'

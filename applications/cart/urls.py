@@ -13,5 +13,7 @@ urlpatterns = [
     # Favorites
     path('add-product-favorite/<int:id>/', views.add_product_favorite, name='add_product_favorite'),
     path('productos/favoritos/', views.ListProductFavorites.as_view(), name='products_favorite_by_user'),
+    path('product-delete-favorite/<int:id>/', views.delete_producto_favorites, name='product-delete-favorite'),
 
 ]
+

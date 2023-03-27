@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, TemplateView
-from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.views.generic import ListView, TemplateView, DeleteView
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 
 from .models import Favorite
@@ -11,6 +11,7 @@ from applications.product.models import Product
 from .cart import ShoppingCart
 
 
+# Cart
 
 class AllProductsCart(TemplateView):
     template_name = 'cart/view_cart.html'
@@ -91,8 +92,6 @@ def add_product_favorite(request, id):
     return redirect(current_url)
 
 
-
-
 class ListProductFavorites(LoginRequiredMixin, ListView):
     login_url = 'users_app:user_login'
     template_name = 'cart/favorites.html'
@@ -103,7 +102,18 @@ class ListProductFavorites(LoginRequiredMixin, ListView):
             user=user
         ) 
         return favorite_by_user
-        
+    
+
+@login_required(login_url='users_app:user_login')
+def delete_producto_favorites(request, id):
+    
+    Favorite.objects.filter(
+        id=id
+    ).delete()
+
+    current_url =  request.META.get('HTTP_REFERER')
+    return redirect(current_url)
+
     
 
 

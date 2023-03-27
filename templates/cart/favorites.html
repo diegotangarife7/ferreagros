@@ -1,4 +1,41 @@
 
-{% for product_favorites in object_list %}
-    <li>{{product_favorites}}</li>
-{% endfor %}
+
+
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Tus Favoritos {% endblock  %}
+
+
+
+{% block content %}
+
+<div class="cart-container-table">
+      {% if object_list %}
+        <p class="cart-total-payable">Tus productos favoritos</p>
+        <table class="table cart-table-table">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">PRODUCTO</th>
+                <th class="text-center" scope="col">ELIMINAR DE FAVORITOS</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for product_favorites in object_list %}
+                  <tr>
+                    <td class="text-center">{{product_favorites.product|truncatechars:40}}</td>
+                    <td class="text-center"><a class="btn btn-danger" href="{% url 'cart_app:product-delete-favorite' product_favorites.id %}"><i class="fa-solid fa-trash-can"></i></a></td> 
+                  </tr>
+                {% endfor %}
+                {% else %}
+                  <div class="cart-div-no-products">
+                    <p class="cart-text-no-products">Selecciona Tus Productos Favoritos</p>
+                    <a class="cart-a-all-products" href="{% url 'product_app:all_categories_products' %}">Agregar productos a favoritos</a>
+                  </div>
+                {% endif %}
+            </tbody>
+        </table>
+</div>
+
+{% endblock  %}
