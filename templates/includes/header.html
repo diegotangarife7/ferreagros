@@ -19,18 +19,28 @@
         <button class="user-a" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="a-icons">
                 <i class="fa-solid fa-heart"></i>
+                <span class="amount-product">{{favorite_count}}</span>
             </div> 
         </button>
-        <ul class="dropdown-menu dropstart">
-            <p>Tus favoritos</p>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">favoritos 1</a></li>
-            <li><a class="dropdown-item" href="#">favoritos 2</a></li>
-            <li><a class="dropdown-item" href="#">favoritos 3</a></li>
-            <li><a class="dropdown-item" href="#">favoritos 4</a></li>
-            <li><a class="dropdown-item" href="#">favoritos 5</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <a href="">ir a la lista de favoritos</a>
+        <ul class="dropdown-menu text-center"> 
+            <p class="font-weight-bold text-center text-dark">Tus favoritos <i class="fa-solid fa-heart"></i></p>          
+            {% if favorite_by_user %}
+                <li><hr class="dropdown-divider"></li>
+                {% for favorite in favorite_by_user %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-2">{{favorite.product|truncatechars:25|title}}</li>
+                    <li><hr class="dropdown-divider"></li>
+                {% endfor %}
+                <a class="badge text-bg-success p-2" href="{% url 'cart_app:products_favorite_by_user' %}">Ver tus favoritos</a>
+            {% else %}
+                {% if user.is_authenticated %}
+                    <div class="alert alert-danger mx-3" role="alert">
+                        Tu lista de favoritos está vacía.
+                    </div>
+                    <a class="badge text-bg-success p-2" href="{% url 'product_app:all_categories_products' %}">Agregar favoritos</a>
+                {% else %}
+                    <a class="badge text-bg-success p-2" href="{% url 'users_app:user_login' %}">Iniciar Sesión</a>
+                {% endif %} 
+            {% endif %}
         </ul>
 
         
@@ -46,13 +56,13 @@
             {% if products_cart %}
                 <li><hr class="dropdown-divider"></li>
                 {% for item in products_cart %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-2" href="#">{{item.product|truncatechars:25|title}}<span class="badge bg-success rounded-pill">{{item.quantity}}</span> </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-2">{{item.product|truncatechars:25|title}}<span class="badge bg-success rounded-pill">{{item.quantity}}</span> </li>
                     <li><hr class="dropdown-divider"></li>
                 {% endfor %}
             <a class="badge text-bg-success p-2" href="{% url 'cart_app:cart_sale' %}">Ver tu Carrito</a>
             {% else %}
                 <div class="alert alert-danger mx-3" role="alert">
-                    No tienes productos en el carrito
+                    No tienes productos en el carrito.
                 </div>
                 <a class="badge text-bg-success p-2" href="{% url 'product_app:all_categories_products' %}">Agregar productos</a>
             {% endif %}

@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, CreateView, TemplateView
+from django.views.generic import ListView, TemplateView
+from django.urls import reverse_lazy
+from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Sale
-from applications.users.models import User
+
+from .models import Favorite
 from applications.product.models import Product
 from .cart import ShoppingCart
 
@@ -65,8 +69,42 @@ def subtract_product_cart(request, id):
     return redirect('cart_app:cart_sale')
 
     
-    
 
+    
+# Favorites
+
+@login_required(login_url='users_app:user_login')
+def add_product_favorite(request, id):
+    user = request.user
+    product = Product.objects.get(id=id)
+    
+    try:
+        favorite = Favorite.objects.create(
+            user = user,
+            product = product
+        )
+        favorite.save()
+    except:
+        IntegrityError
+
+    current_url =  request.META.get('HTTP_REFERER')
+    return redirect(current_url)
+
+
+
+
+class ListProductFavorites(LoginRequiredMixin, ListView):
+    login_url = 'users_app:user_login'
+    template_name = 'cart/favorites.html'
+
+    def get_queryset(self):
+        user = self.request.user
+        favorite_by_user = Favorite.objects.filter(
+            user=user
+        ) 
+        return favorite_by_user
+        
+    
 
 
     

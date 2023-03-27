@@ -26,4 +26,19 @@ class Sale(models.Model):
         db_table = 'Venta'
         verbose_name ='venta'
         verbose_name_plural = 'ventas'
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Usuario')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Producto')
+
+    def __str__(self):
+        return self.user.name + ' - ' + self.product.name
+    
+    class Meta:
+        db_table = 'Favoritos'
+        verbose_name ='Favorito'
+        verbose_name_plural = 'Favoritos'
+        unique_together = ['user', 'product']
+    
     

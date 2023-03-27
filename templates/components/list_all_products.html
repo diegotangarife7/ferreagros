@@ -13,7 +13,7 @@
                             <a class="all-icons-car-heart-a" id="liveToastBtn" href="{% url 'cart_app:add_product' id=product.id %}"><i class="fa-solid fa-cart-shopping"></i></a>
                         </div>
                         <div class="all-icons-car-heart all-icons-heart">
-                            <a class="all-icons-car-heart-a" href=""><i class="fa-solid fa-heart"></i></a>
+                            <a href="{% url 'cart_app:add_product_favorite' product.id %}" class="all-icons-car-heart-a"><i class="fa-solid fa-heart"></i></a>
                         </div>
                     </div>
                     {% if product.discounted_price %}
@@ -26,3 +26,4 @@
         </div>
     {% endfor %}
 </div>
+
