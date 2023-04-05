@@ -81,7 +81,7 @@
 
         <button class="user-a" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="a-icons">
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <i class="fa-solid fa-user"></i>
                 {% else %}
                     <i class="fa-solid fa-user-secret"></i>
@@ -89,7 +89,7 @@
             </div>
         </button>
         <ul class="dropdown-menu text-center bg-dark">
-            {% if user.is_authenticated %}
+            {% if request.user.is_authenticated %}
                 <button type="button" class="btn btn-success">{{user.name|truncatechars:12|title}}</button>
                 <h6><a class="badge text-bg-danger mt-3" href="{% url 'users_app:user_logout' %}">Cerrar Sesión <i class="fa-solid fa-right-from-bracket p-lg-2"></i></a></h6>
             {% else %}
