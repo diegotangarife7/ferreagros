@@ -82,9 +82,9 @@ def multiple_filters(request):
 
     elif price_min and price_max and category_select:
         all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(price__lte=price_max) & Q(categories__name=category_select)
-        )
-
+            #Q(price__gte=price_min) & Q(price__lte=price_max) & Q(categories__name=category_select)
+            price__gte=price_min, price__lte=price_max, categories__name=category_select)
+        
     elif price_min and price_max and greader:
         all_products = Product.objects.filter(
             Q(price__gte=price_min) & Q(price__lte=price_max)
