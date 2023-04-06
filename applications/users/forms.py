@@ -95,14 +95,14 @@ class LoginForm(forms.Form):
     )
 
     def clean(self):
-        cleaned_fata = super().clean()
+        super().clean()
 
         email = self.cleaned_data['email']
         password = self.cleaned_data['password']
 
         if not authenticate(email=email, password=password):
             raise forms.ValidationError('Los datos no son correctos')
-        
+
         return self.cleaned_data
     
     def non_field_errors(self):
@@ -110,3 +110,51 @@ class LoginForm(forms.Form):
         if 'Los datos no son correctos' in errors:
             return errors
         return []
+
+
+
+class UpdatePasswordForm(forms.Form):
+    old_password = forms.CharField(required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Su contraseña actual',
+                'class': 'form-control',
+            }
+        )
+    )
+
+    new_password_1 = forms.CharField(required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Nueva Contraseña',
+                'class': 'form-control',
+            }
+        )
+    )
+
+    new_password_2 = forms.CharField(required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Repita nueva contraseña',
+                'class': 'form-control',
+            }
+        )
+    )
+
+    def clean(self):
+        super().clean()
+
+        try:
+            old_password = self.cleaned_data['old_password']
+            new_password_1 = self.cleaned_data['new_password_1']
+            new_password_2 = self.cleaned_data['new_password_2']
+        except:
+            raise forms.ValidationError('Ha ocurrido un error. Intenta de nuevo.')
+
+        if new_password_1 != new_password_2:
+            raise forms.ValidationError('Las contraseñas no coinciden //')
+        elif len(new_password_1) <= 5:
+            raise forms.ValidationError('Utiliza una contraseña de 6 o mas caracteres.')
+        elif new_password_1 == old_password:
+            raise forms.ValidationError('Lo siento, pero no se puede establecer la nueva contraseña como la actual. Por favor, elija una contraseña diferente.')
+        

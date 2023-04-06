@@ -40,7 +40,7 @@
                 {% endfor %}
                 <a class="badge text-bg-success p-2" href="{% url 'cart_app:products_favorite_by_user' %}">Ver tus favoritos</a>
             {% else %}
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <div class="alert alert-danger mx-3" role="alert">
                         Tu lista de favoritos está vacía.
                     </div>
@@ -91,6 +91,7 @@
         <ul class="dropdown-menu text-center bg-dark">
             {% if request.user.is_authenticated %}
                 <button type="button" class="btn btn-success">{{user.name|truncatechars:12|title}}</button>
+                <h6><a class="badge mt-3" href="{% url 'users_app:change_password' %}">Cambiar contraseña</a><h6>
                 <h6><a class="badge text-bg-danger mt-3" href="{% url 'users_app:user_logout' %}">Cerrar Sesión <i class="fa-solid fa-right-from-bracket p-lg-2"></i></a></h6>
             {% else %}
                 <h5><a class="badge text-bg-success mt-3" href="{% url 'users_app:user_register' %}">Registrate <i class="fa-solid fa-right-from-bracket p-lg-2"></i></a></h5>

@@ -12,6 +12,17 @@
 
 
 <div class="register-form-user">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p class="text-center">{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <a href="{% url 'home_app:home' %}"><i class="fa-solid fa-circle-arrow-left" style="color: #004D40;"></i></a>
+
     <h2 class="register-form-title">FerreAgros</h2>
     <form method="POST" class="register-form-inputs"> {% csrf_token %}
         <div class="mb-3">

@@ -4,10 +4,12 @@ from django.views.generic import View
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
-
-from .forms import UserRegisterForm, LoginForm
+from .forms import UserRegisterForm, LoginForm, UpdatePasswordForm
 from .models import User
+
 
 class UserRegisterView(FormView):
     template_name = 'users/register.html'
@@ -49,8 +51,33 @@ class LoginUser(FormView):
         return super().dispatch(request, *args, **kwargs)
 
 
+
 class LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('home_app:home')
-        
+    
+
+
+class ChangePassword(LoginRequiredMixin, FormView):
+    login_url = 'users_app:user_login'
+    template_name = 'users/change_password.html'
+    form_class = UpdatePasswordForm
+    success_url = reverse_lazy('users_app:user_login')
+
+    def form_valid(self, form):
+        user = self.request.user
+
+        if user.check_password(form.cleaned_data['old_password']):
+            new_password = form.cleaned_data['new_password_1']
+            user.set_password(new_password)
+            user.save()
+        else:
+            #form.add_error('old_password', 'La contraseña que proporcionaste no coincide con la contraseña actual. Por favor, intenta de nuevo con la contraseña correcta.')
+            messages.error(self.request, 'La contraseña que proporcionaste no coincide con la contraseña actual. Por favor, intenta de nuevo con la contraseña correcta.')
+            return self.form_invalid(form)
+
+        logout(self.request)
+        messages.success(self.request, '¡Listo! Tu contraseña ha sido cambiada con éxito. Inicia sesión')
+        return super().form_valid(form)
+    
