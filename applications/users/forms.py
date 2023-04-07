@@ -97,9 +97,12 @@ class LoginForm(forms.Form):
     def clean(self):
         super().clean()
 
-        email = self.cleaned_data['email']
-        password = self.cleaned_data['password']
-
+        try:
+            email = self.cleaned_data['email']
+            password = self.cleaned_data['password']
+        except:
+            raise forms.ValidationError('Ha ocurrido un error. Intenta de nuevo.')
+        
         if not authenticate(email=email, password=password):
             raise forms.ValidationError('Los datos no son correctos')
 
@@ -156,5 +159,5 @@ class UpdatePasswordForm(forms.Form):
         elif len(new_password_1) <= 5:
             raise forms.ValidationError('Utiliza una contraseña de 6 o mas caracteres.')
         elif new_password_1 == old_password:
-            raise forms.ValidationError('Lo siento, pero no se puede establecer la nueva contraseña como la actual. Por favor, elija una contraseña diferente.')
+            raise forms.ValidationError('Se ha producido un error. Asegúrate de introducir correctamente tu contraseña actual y de elegir una nueva contraseña diferente.')
         
