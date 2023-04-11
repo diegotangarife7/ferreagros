@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
 
-
-from applications.product.models import Product
+from applications.product.models import PrincipalProduct, Product
 from .forms import ContactForm
 
 
@@ -15,7 +14,41 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Principal Product
+        principal_product = PrincipalProduct.objects.first()
+
+        price = principal_product.product.price
+        discounted_price = principal_product.product.discounted_price
+
+        if discounted_price > 0:
+            discount_percentage = 100 - ((discounted_price * 100) / price) 
+            context['discount_percentage'] = discount_percentage
+
+        if principal_product.new_product:
+            context['new_product'] = 'Producto nuevo'
+
+        context['principal_product_name'] = principal_product.product.name
+        context['principal_product_description'] = principal_product.product.description
+        context['principal_product_slug'] = principal_product.product.slug
+        context['principal_product_principal_image'] = principal_product.product.principal_image
+
+
+        # featured products and Best sellers (10 images)
+        product_images = list(Product.objects.all().order_by('-created')[:9])
+
+        # featured products (4 images)
+        featured_products = product_images[:4]
+        context['featured_products'] = featured_products
+    
+        # Best sellers (5 images)
+        best_sellers = product_images[4:9]
+        context['best_sellers'] = best_sellers
+    
+
+        # Contact Form
         context['form'] = ContactForm()
+       
         return context
     
     def post(self, request, *args, **kwargs):
@@ -52,9 +85,10 @@ class HomeView(TemplateView):
 
 
 
-
-
 class AboutUs(TemplateView):
     template_name = 'home/about_us.html'
+
+
+
 
 

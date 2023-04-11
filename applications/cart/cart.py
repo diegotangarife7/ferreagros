@@ -27,7 +27,6 @@ class ShoppingCart:
             cart[id_product] = {'product': product.name, 'quantity': 1}
             sale = Sale(user=self.request.user, product=product, quantity=cart[id_product]['quantity'])
             cart[id_product]['total'] = sale.calculate_total()
-
         self.request.session['cart'] = cart
 
     def delete(self, id):

@@ -56,11 +56,14 @@ class ProductImages(models.Model):
 
 class PrincipalProduct(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT, verbose_name='producto de portada')
+    new_product = models.BooleanField(default=False, verbose_name='Producto nuevo')
 
     class Meta:
         db_table='producto principal'
-        verbose_name='producto principal (portada)'
-        verbose_name_plural = 'productos principales (portada)'
+        verbose_name_plural = 'producto principal (inicio)'
+
+    def __str__(self):
+        return self.product.name
 
     
 

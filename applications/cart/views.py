@@ -113,12 +113,3 @@ def delete_producto_favorites(request, id):
 
     current_url =  request.META.get('HTTP_REFERER')
     return redirect(current_url)
-
-    
-
-
-    
-        
-        
-
-

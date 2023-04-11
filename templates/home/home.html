@@ -12,21 +12,25 @@
 
     <section class="main-one-section">
         <div class="section-description">
-            <p class="description-p">Producto nuevo</p>
-            <h1 class="description-title">FUMIGADORA TOYAMA</h1>
-            <h3 class="description-h3">ESTACIONARIA TPS45C SUCCIÓN 45l/min PRESION 640psi/44bar CON LLANTAS</h3>
-            <a href="" class="description-a">Ver detalle</a>
+            {% if new_product %}
+                <p class="description-p">{{new_product}}</p>
+            {% endif %}
+            <h1 class="description-title">{{principal_product_name}}</h1>
+            <h3 class="description-h3">{{principal_product_description|truncatechars:100}}</h3>
+            <a href="{% url 'product_app:detail_product' principal_product_slug %}" class="description-a">Ver detalle</a>
         </div>
         <aside class="section-image">
             <figure class="image-figure">
-                <img class="figure-principal" src="{% static 'images/principal.png' %}" alt="">
-                <div class="figure-discount">
-                    <h2 class="discount-h2">15%</h2>
-                    <p class="discount-p">Descuento</p>
-                </div>
-                <div class="figure-icon">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                </div>
+                <img class="figure-principal" src="{{principal_product_principal_image.url}}" alt="">
+                {% if discount_percentage %}
+                    <div class="figure-discount">
+                        <h2 class="discount-h2">{{discount_percentage|floatformat:0}}%</h2>
+                        <p class="discount-p">Descuento</p>
+                    </div>
+                    <div class="figure-icon">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                {% endif %}
             </figure>
             <img class="figure-one" src="{% static 'images/vector_1.png' %}" alt="">
             <img class="figure-two" src="{% static 'images/vector_2.png' %}" alt="">
@@ -58,10 +62,9 @@
     <section class="main-three-section">
         <p class="three-section-p">Productos Destacados</p>
         <picture class="three-section-picture">
-            <img class="section-picture-img" src="{% static 'images/tractor.jpg' %}" alt="">
-            <img class="section-picture-img" src="{% static 'images/taladro.png' %}" alt="">
-            <img class="section-picture-img" src="{% static 'images/principal.png' %}" alt="">
-            <img class="section-picture-img" src="{% static 'images/ensayo_2.png' %}" alt="">
+            {% for img in featured_products  %}
+                <img class="section-picture-img" src="{{img.principal_image.url}}" alt="">
+            {% endfor %}
         </picture>
     </section>
 
@@ -73,12 +76,9 @@
         <div class="four-section-container">
             <h2 class="container-title-h2">Lo más vendido</h2>
             <picture class="container-picture">
-                <img class="picture-images" src="{% static 'images/motobomba.jpg' %}" alt="">
-                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
-                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
-                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
-                <img class="picture-images" src="{% static 'images/taladro.png' %}" alt="">
-                <img class="picture-images" src="{% static 'images/principal.png' %}" alt="">
+                {% for img in best_sellers %}
+                    <img class="picture-images" src="{{img.principal_image.url}}" alt="">
+                {% endfor %}
             </picture>
             <div class="container-cards">
                 <div class="card-product-info">
