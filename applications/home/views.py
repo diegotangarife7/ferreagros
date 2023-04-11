@@ -4,7 +4,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
 
-from applications.product.models import PrincipalProduct, Product
+from applications.product.models import PrincipalProduct, Product, ProductImages
 from .forms import ContactForm
 
 
@@ -34,17 +34,35 @@ class HomeView(TemplateView):
         context['principal_product_principal_image'] = principal_product.product.principal_image
 
 
-        # featured products and Best sellers (10 images)
+        # featured products and Best sellers (9 images)
         product_images = list(Product.objects.all().order_by('-created')[:9])
 
         # featured products (4 images)
         featured_products = product_images[:4]
         context['featured_products'] = featured_products
-    
+
         # Best sellers (5 images)
         best_sellers = product_images[4:9]
         context['best_sellers'] = best_sellers
     
+
+        # Three products random
+        three_products = Product.objects.order_by('?')[:3]
+
+        two_products = three_products[:2]
+        context['two_products'] = two_products
+
+        one_product = three_products[2:3]
+        context['one_product'] = one_product
+        
+        # Product Images One
+        for i in one_product:
+            id = i.id
+        product_one = Product.objects.get(id=id)
+        images_product = ProductImages.objects.filter(product=product_one)
+        images_product = images_product[:3]
+        context['images_product'] = images_product
+        
 
         # Contact Form
         context['form'] = ContactForm()

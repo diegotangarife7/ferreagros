@@ -52,6 +52,8 @@ class Product(models.Model):
 class ProductImages(models.Model):
     images = models.ImageField(upload_to='products', verbose_name='imagenes')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images') 
+
+    
         
 
 class PrincipalProduct(models.Model):

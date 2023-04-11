@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load humanize %}
 
 
 {% block title %} Inicio {% endblock  %}
@@ -40,8 +41,6 @@
 
 
 
-
-    
     <section class="main-two-section">
         <div class="section-container-products">
             <div class="products-description">
@@ -57,8 +56,6 @@
 
 
 
-    
-
     <section class="main-three-section">
         <p class="three-section-p">Productos Destacados</p>
         <picture class="three-section-picture">
@@ -67,8 +64,6 @@
             {% endfor %}
         </picture>
     </section>
-
-
 
 
 
@@ -81,78 +76,64 @@
                 {% endfor %}
             </picture>
             <div class="container-cards">
-                <div class="card-product-info">
-                    <div class="product-info-detail">
-                        <h3 class="info-detail-title">motos</h3>
-                        <p class="info-detail-description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believabl</p>
-                        <div class="info-detail-link">
-                            <a class="detail-link-a" href="">ver detalle</a>
+                {% for product in two_products %}
+                    <div class="card-product-info">
+                        <div class="product-info-detail">
+                            <h3 class="info-detail-title">{{product.name|truncatechars:11}}</h3>
+                            <p class="info-detail-description">{{product.description|truncatechars:190}}</p>
+                            <div class="info-detail-link">
+                                <a class="detail-link-a" href="{% url 'product_app:detail_product' product.slug %}">ver detalle</a>
+                            </div>
                         </div>
+                        <picture class="product-info-picture">
+                            <img class="info-picture-image" src="{{product.principal_image.url}}" alt="">
+                        </picture>
                     </div>
-                    <picture class="product-info-picture">
-                        <img class="info-picture-image" src="{% static 'images/tractor.jpg' %}" alt="">
-                    </picture>
-                </div>
-                <div class="card-product-info">
-                    <div class="product-info-detail">
-                        <h3 class="info-detail-title">tractor</h3>
-                        <p class="info-detail-description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believabl</p>
-                        <div class="info-detail-link">
-                            <a class="detail-link-a" href="">ver detalle</a>
-                        </div>
-                    </div>
-                    <picture class="product-info-picture">
-                        <img class="info-picture-image" src="{% static 'images/principal.png' %}" alt="">
-                    </picture>
-                </div>
+                {% endfor %}
             </div>
             <div class="container-detail-add-car">
-                <picture class="detail-add-car-image">
-                    <img class="add-car-big-image" src="{% static 'images/image_13.png' %}" alt="">
-                </picture>
-                <picture class="detail-images-buy">
-                    <img class="image-buy-individual" src="{% static 'images/image_13.png' %}" alt="">
-                    <img class="image-buy-individual" src="{% static 'images/image_13.png' %}" alt="">
-                    <img class="image-buy-individual" src="{% static 'images/image_13.png' %}" alt="">
-                </picture>
-                <div class="detail-info-product">
-                    <div class="info-product-name-description">
-                        <h2 class="product-name-title">Tubos industriales</h2>
-                        <p class="product-name-descripcion-p">There Are Many Variations Of Passages Of Lorem Ipsum Available, But The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomised Words Which Don't Look Even Slightly Believabl</p>
-                    </div>
-                    <div class="detail-info-price">
-                        <h2 class="detail-info-price-h2">$ 215.000</h2>
-                        <div class="check-checkbox-stock">
-                            <label class="detail-info-label-stock" for="">En stock</label>
-                            <input class="detail-info-checkbox" type="checkbox">
+                {% for product in one_product %}
+                    <picture class="detail-add-car-image">
+                        <img class="add-car-big-image" src="{{product.principal_image.url}}" alt="">
+                    </picture>
+                    <picture class="detail-images-buy">
+                        {% for img in images_product %}
+                            <img class="image-buy-individual" src="{{img.images.url}}" alt="">
+                        {% endfor %}
+                    </picture>
+                    <div class="detail-info-product">
+                        <div class="info-product-name-description">
+                            <h2 class="product-name-title">{{product}}</h2>
+                            <p class="product-name-descripcion-p">{{product.description|truncatechars:200}}</p>
+                        </div>
+                        <div class="detail-info-price">
+                            <h2 class="detail-info-price-h2">$ {{product.price|floatformat:0|intcomma}}</h2>
+                            <div class="check-checkbox-stock">
+                                <label class="detail-info-label-stock" for="">En stock</label>
+                                <input class="detail-info-checkbox" checked type="checkbox">
+                            </div>
+                        </div>
+                        <div class="detail-action-user">
+                            <div class="action-user-add-car">
+                                <a class="link-add-car" href="{% url 'cart_app:add_product' product.id %}">Añadir al carrito</a>
+                            </div>
+                            <a href="{% url 'cart_app:add_product_favorite' product.id %}" class="action-user-icon">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                        </div>
+                        <div class="detail-product-categories">
+                            <h3 class="product-title-category">Categorias:</h3>
+                            <ul class="product-ul-categories">
+                                {% for categories in product.categories.all %}
+                                    <li class="ul-li-category">{{categories}}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
-                    <div class="detail-action-user">
-                        <div class="action-user-add-car">
-                            <a class="link-add-car" href="">Añadir al carrito</a>
-                        </div>
-                        <a href="" class="action-user-icon">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                        <a href="" class="action-user-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    </div>
-                    <div class="detail-product-categories">
-                        <h3 class="product-title-category">Categorias:</h3>
-                        <ul class="product-ul-categories">
-                            <li class="ul-li-category">Fumigadoras</li>
-                            <li class="ul-li-category">motores</li>
-                            <li class="ul-li-category">Prensadoras</li>
-                        </ul>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
-
-
-
 
 
     <section class="main-five-section">
@@ -228,8 +209,6 @@
             <img class="right-picture-img" src="{% static 'images/contactanos.png' %}" alt="">
         </picture>
     </section>
-
-
 
 
 
