@@ -15,7 +15,7 @@ class ListAllCategoriesAndProducts(ListView):
         return Product.objects.all().order_by('-created')
          
     def get_context_data(self, **kwargs):
-        context = super(ListAllCategoriesAndProducts, self). get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['all_categories'] = Category.objects.all()
         return context
     

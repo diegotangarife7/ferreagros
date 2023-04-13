@@ -6,6 +6,7 @@ from django.contrib import messages
 
 from applications.product.models import PrincipalProduct, Product, ProductImages
 from .forms import ContactForm
+from .models import AboutUs
 
 
 
@@ -103,9 +104,23 @@ class HomeView(TemplateView):
 
 
 
-class AboutUs(TemplateView):
+class AboutUsView(TemplateView):
     template_name = 'home/about_us.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        information  = AboutUs.objects.last()
+        
+        context['title'] = information.title
+        context['description'] = information.description
+        context['principal_image'] = information.principal_image
+        context['title_1'] = information.title_1
+        context['description_title_1'] = information.description_title_1
+        context['avatar'] = information.avatar
+        context['name_avatar'] = information.name_avatar
+
+        return context
 
 
 
