@@ -5,3 +5,4 @@ migrations
 media/
 db.sqlite3
 ddb.sqlite3
+env
