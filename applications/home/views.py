@@ -119,6 +119,11 @@ class AboutUsView(TemplateView):
         context['description_title_1'] = information.description_title_1
         context['avatar'] = information.avatar
         context['name_avatar'] = information.name_avatar
+        context['description_avatar'] = information.description_avatar
+        context['title_2'] = information.title_2
+        context['description_title_2'] = information.description_title_2
+        context['title_3'] = information.title_3
+        context['description_title_3'] = information.description_title_3        
 
         return context
 

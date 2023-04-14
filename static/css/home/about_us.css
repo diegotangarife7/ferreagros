@@ -90,7 +90,9 @@
 
 .about-img-avatar{
     border-radius: 50%;
-    border: 3px solid #3D9A67;;
+    border: 3px solid #3D9A67;
+    width: 60px;
+    height: 60px;
 }
 
 .about-container-name-lastaname{
