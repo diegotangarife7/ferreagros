@@ -3,7 +3,8 @@ from django.conf import settings
 
 
 
-class AboutUs(models.Model):                      
+class AboutUs(models.Model):                     
+    created =               models.DateTimeField(auto_now_add=True) 
     user =                  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title =                 models.CharField(max_length=60, verbose_name='Primer titulo')
     description =           models.TextField(verbose_name='descripcion del primer titulo')
@@ -20,7 +21,7 @@ class AboutUs(models.Model):
 
 
     def __str__(self):
-        return self.title_1
+        return str(self.id) + ') ' + self.title_1 + ' --- ' +  str(self.created)
     
     class Meta:
         db_table = 'sobre nosotros'

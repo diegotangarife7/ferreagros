@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
+from django.views.generic.edit import UpdateView
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
+from django.urls import reverse_lazy
+
 
 from applications.product.models import PrincipalProduct, Product, ProductImages
-from .forms import ContactForm
+from .forms import ContactForm, AboutUsForm
 from .models import AboutUs
 
 
@@ -128,5 +131,72 @@ class AboutUsView(TemplateView):
         return context
 
 
+
+
+
+# admin only
+class AdminAboutView(View):
+
+    def get(self, request, *args, **kwargs):
+        form = AboutUsForm()
+
+        list_about = AboutUs.objects.all().order_by('-created')
+
+        context = {
+            'form_about': form,
+            'list_about': list_about,
+            
+        }
+        return render(request, 'home/about_admin.html', context)
+    
+
+    def post(self, request, *args, **kwargs):
+
+        form = AboutUsForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            principal_image = form.cleaned_data['principal_image']
+            title_1 = form.cleaned_data['title_1']
+            description_title_1 = form.cleaned_data['description_title_1']
+            avatar = form.cleaned_data['avatar']
+            name_avatar = form.cleaned_data['name_avatar']
+            description_avatar = form.cleaned_data['description_avatar']
+            title_2 = form.cleaned_data['title_2']
+            description_title_2 = form.cleaned_data['description_title_2']
+            title_3 = form.cleaned_data['title_3']
+            description_title_3 = form.cleaned_data['description_title_3']
+            
+
+            about = AboutUs.objects.create(
+                user = request.user,
+                title = title,
+                description = description,
+                principal_image = principal_image,
+                title_1 = title_1,
+                description_title_1 = description_title_1,
+                avatar = avatar, 
+                name_avatar = name_avatar,
+                description_avatar = description_avatar,
+                title_2 = title_2,
+                description_title_2 = description_title_2,
+                title_3 = title_3,
+                description_title_3 = description_title_3
+            )
+            about.save()
+            messages.success(request, 'Se ha creado el \'SOBRE NOSOTROS\' correctamente')
+        else:
+            messages.warning(request, 'No se pudo procesar tu solicitud. Por favor asegúrate de llenar todos los campos correctamente y vuelve a intentarlo.')
+
+        return redirect('home_app:about_administrator')
+            
+        
+# admin only
+class AdminAboutEditView(UpdateView):
+    template_name = 'home/about_edit.html'
+    form_class = AboutUsForm
+    model = AboutUs
+    success_url = reverse_lazy('home_app:about_administrator')
 
 

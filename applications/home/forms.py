@@ -1,5 +1,6 @@
 from django import forms
 
+from .models import AboutUs
 
 
 class ContactForm(forms.Form):
@@ -64,6 +65,26 @@ class ContactForm(forms.Form):
     
 
 
+class AboutUsForm(forms.ModelForm):
+    
+    class Meta:
+        model = AboutUs
+        fields = [
+            'title',
+            'description',
+            'principal_image',
+            'title_1',
+            'description_title_1',
+            'avatar',
+            'name_avatar',
+            'description_avatar',
+            'title_2',
+            'description_title_2',
+            'title_3',
+            'description_title_3',
+        ]
+
+    
     
 
     
