@@ -11,7 +11,7 @@ urlpatterns = [
 
     # admin only
     path('administrador/', views.AdminView.as_view(), name='administrator'),
-    path('about-administrador/', views.AdminAboutView.as_view(), name='about_administrator'),
-    path('about-administrador/<int:pk>/editar/', views.AdminAboutEditView.as_view(), name='about_edit'),
-    path('about-administrador/<int:id>/borrar/', views.admin_about_delete, name='about_delete'),
+    path('administrador-about/', views.AdminAboutView.as_view(), name='about_administrator'),
+    path('administrador-about/<int:pk>/editar/', views.AdminAboutEditView.as_view(), name='about_edit'),
+    path('administrador-about/<int:id>/borrar/', views.admin_about_delete, name='about_delete'),
 ]

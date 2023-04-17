@@ -92,6 +92,9 @@
             {% if request.user.is_authenticated %}
                 <button type="button" class="btn btn-success">{{user.name|truncatechars:12|title}}</button>
                 <h6><a class="badge mt-3" href="{% url 'users_app:change_password' %}">Cambiar contraseña</a><h6>
+                    {% if request.user.is_superuser %}
+                        <h6><a class="badge text-bg-warning mt-3" href="{% url 'home_app:administrator' %}">Admin  <i class="fa-solid fa-unlock"></i> </a><h6>
+                    {% endif %}
                 <h6><a class="badge text-bg-danger mt-3" href="{% url 'users_app:user_logout' %}">Cerrar Sesión <i class="fa-solid fa-right-from-bracket p-lg-2"></i></a></h6>
             {% else %}
                 <h5><a class="badge text-bg-success mt-3" href="{% url 'users_app:user_register' %}">Registrate <i class="fa-solid fa-right-from-bracket p-lg-2"></i></a></h5>

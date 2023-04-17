@@ -5,8 +5,8 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 from applications.product.models import PrincipalProduct, Product, ProductImages
@@ -135,15 +135,33 @@ class AboutUsView(TemplateView):
 
 
 # admin only
-class AdminView(LoginRequiredMixin, TemplateView):
+class AdminView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     login_url = 'users_app:user_login'
     template_name = 'home/administrator.html'
-
-
+    
+    def test_func(self):
+        return self.request.user.is_superuser
+    
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            return redirect('home_app:home')
+        else:
+            return redirect(self.get_login_url())
+        
+           
 
 # admin only
-class AdminAboutView(LoginRequiredMixin, View):
+class AdminAboutView(LoginRequiredMixin, UserPassesTestMixin, View):
     login_url = 'users_app:user_login'
+
+    def test_func(self):
+        return self.request.user.is_superuser
+    
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            return redirect('home_app:home')
+        else:
+            return redirect(self.get_login_url())
 
     def get(self, request, *args, **kwargs):
         form = AboutUsForm()
@@ -152,9 +170,9 @@ class AdminAboutView(LoginRequiredMixin, View):
 
         context = {
             'form_about': form,
-            'list_about': list_about,
-            
+            'list_about': list_about, 
         }
+
         return render(request, 'home/about_admin.html', context)
     
 
@@ -202,12 +220,21 @@ class AdminAboutView(LoginRequiredMixin, View):
 
 
 # admin only
-class AdminAboutEditView(LoginRequiredMixin, UpdateView):
+class AdminAboutEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     login_url = 'users_app:user_login'
     template_name = 'home/about_edit.html'
     form_class = AboutUsForm
     model = AboutUs
     success_url = reverse_lazy('home_app:about_administrator')
+
+    def test_func(self):
+        return self.request.user.is_superuser
+    
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            return redirect('home_app:home')
+        else:
+            return redirect(self.get_login_url())
 
     def form_invalid(self, form):
         messages.warning(self.request, 'No se pudo procesar tu solicitud. Por favor asegúrate de llenar todos los campos correctamente y vuelve a intentarlo.')
@@ -215,8 +242,11 @@ class AdminAboutEditView(LoginRequiredMixin, UpdateView):
 
 
 
+def check_is_superuser(user):
+    return user.is_superuser
+
 # admin only
-@login_required(login_url='users_app:user_login')
+@user_passes_test(check_is_superuser, login_url='home_app:home')
 def admin_about_delete(request, id):
     about = AboutUs.objects.get(id=id)
     about.delete()
