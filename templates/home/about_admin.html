@@ -52,7 +52,7 @@
 
 {% for l in list_about %}
   <p>
-    <li> {{l.title}} -- {{l.user.name}} -- {{l.created}} -- <a href="{% url 'home_app:about_edit' l.pk %}">editar</a>
+    <li> {{l.title}} -- {{l.user.name}} -- {{l.created}} -- <a href="{% url 'home_app:about_edit' l.pk %}">editar</a> <a href="{% url 'home_app:about_delete' l.pk %}">borrar</a>
   </p>
 {% endfor %}
 

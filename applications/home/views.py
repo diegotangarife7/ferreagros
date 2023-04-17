@@ -5,6 +5,8 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from applications.product.models import PrincipalProduct, Product, ProductImages
@@ -132,10 +134,16 @@ class AboutUsView(TemplateView):
 
 
 
+# admin only
+class AdminView(LoginRequiredMixin, TemplateView):
+    login_url = 'users_app:user_login'
+    template_name = 'home/administrator.html'
+
 
 
 # admin only
-class AdminAboutView(View):
+class AdminAboutView(LoginRequiredMixin, View):
+    login_url = 'users_app:user_login'
 
     def get(self, request, *args, **kwargs):
         form = AboutUsForm()
@@ -191,12 +199,26 @@ class AdminAboutView(View):
 
         return redirect('home_app:about_administrator')
             
-        
+
+
 # admin only
-class AdminAboutEditView(UpdateView):
+class AdminAboutEditView(LoginRequiredMixin, UpdateView):
+    login_url = 'users_app:user_login'
     template_name = 'home/about_edit.html'
     form_class = AboutUsForm
     model = AboutUs
     success_url = reverse_lazy('home_app:about_administrator')
 
+    def form_invalid(self, form):
+        messages.warning(self.request, 'No se pudo procesar tu solicitud. Por favor asegúrate de llenar todos los campos correctamente y vuelve a intentarlo.')
+        return self.render_to_response(self.get_context_data(form=form))
+
+
+
+# admin only
+@login_required(login_url='users_app:user_login')
+def admin_about_delete(request, id):
+    about = AboutUs.objects.get(id=id)
+    about.delete()
+    return redirect('home_app:about_administrator')
 
