@@ -79,7 +79,7 @@
                 {% for product in two_products %}
                     <div class="card-product-info">
                         <div class="product-info-detail">
-                            <h3 class="info-detail-title">{{product.name|truncatechars:11}}</h3>
+                            <h3 class="info-detail-title">{{product.name|truncatechars:9}}</h3>
                             <p class="info-detail-description">{{product.description|truncatechars:190}}</p>
                             <div class="info-detail-link">
                                 <a class="detail-link-a" href="{% url 'product_app:detail_product' product.slug %}">ver detalle</a>
