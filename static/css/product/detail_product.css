@@ -138,6 +138,7 @@
     list-style: none;
     flex-wrap: wrap;
     margin: 0;
+    padding: 0;
 }
 
 
@@ -195,6 +196,9 @@
 
 
 
+
+/*-------------------------------------------------------------------------*/
+
 @media (max-width: 1068px){
 
     .detail-complete-title-h2{
@@ -207,11 +211,10 @@
 
     .detail-p-price-current{
         font-size: 25px;
-
     }
 
     .detail-p-price-old{
-        font-size: 16px;
+        font-size: 25px;
     }
 
     .detail-container-add-car-car{
@@ -221,7 +224,6 @@
     .detail-container-link-favorites{
         margin: 20px 0;
     }
-
 }
 
 
@@ -237,12 +239,43 @@
     .detail-ul-li-category-list{
         margin: 5px 15px;
     }
-
 }
 
 
-
 @media (max-width: 685px){
+    .detail-all-images-product{
+        width: 100%;
+    }
+
+    .detail-container-secondary-image-product{
+        justify-content: space-between;
+    }
+
+    .detail-secondary-image-product {
+        width: 180px;
+        height: 180px;
+    }
+
+    .detail-container-info-product {
+        width: 100%;
+    }
+
+    .detail-complete-title-h2 {
+        font-size: 30px;
+    }
+
+    .detail-complete-description-h2 {
+        font-size: 16px;
+    }
+
+    .detail-container-categories-all{
+        flex-direction: row;
+    }
+
+    .detail-container-two-prices{
+        justify-content: space-around;
+    }
+
     .detail-section-detail-buy{
         flex-direction: column;
         justify-content: center;
@@ -251,50 +284,30 @@
         margin: 50px auto;
     }
 
+    .detail-container-add-car-car {
+        justify-content: center;
+    }
 
-    .detail-container-link-add-car{
-        font-size: 16px;
-        padding: 5px;
-        text-align: center;
+    .detail-container-link-favorites{
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 410px){
+    .detail-container-secondary-image-product{
+        flex-direction: column;
     }
 
     .detail-container-categories-all{
         flex-direction: column;
     }
     
-  
-    .detail-complete-title-h2{
-        font-size: 20px;
+    .detail-container-link-add-car{
+        text-align: center;
     }
 
     .detail-link-add-favotites-a{
         text-align: center;
     }
-
-    .detail-container-two-prices{
-        justify-content: center;
-    }
-
 }
-    
-
-
-
-@media (max-width: 685px){
-    .detail-secondary-image-product{
-        width: 100px;
-        height: 100px;
-        margin: 10px 10px;
-    }
-
-    .detail-complete-description-h2{
-        font-size: 12px;
-        text-align: center;
-    }
-
-}
-
-
-
-
-
