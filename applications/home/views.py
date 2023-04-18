@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from applications.product.models import PrincipalProduct, Product, ProductImages
 from .forms import ContactForm, AboutUsForm
 from .models import AboutUs
+from .mixins import AdminOnlyMixin
 
 
 
@@ -135,33 +136,15 @@ class AboutUsView(TemplateView):
 
 
 # admin only
-class AdminView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class AdminView(AdminOnlyMixin, TemplateView):
     login_url = 'users_app:user_login'
     template_name = 'home/administrator.html'
     
-    def test_func(self):
-        return self.request.user.is_superuser
-    
-    def handle_no_permission(self):
-        if self.request.user.is_authenticated:
-            return redirect('home_app:home')
-        else:
-            return redirect(self.get_login_url())
-        
-           
+
 
 # admin only
-class AdminAboutView(LoginRequiredMixin, UserPassesTestMixin, View):
+class AdminAboutView(AdminOnlyMixin, View):
     login_url = 'users_app:user_login'
-
-    def test_func(self):
-        return self.request.user.is_superuser
-    
-    def handle_no_permission(self):
-        if self.request.user.is_authenticated:
-            return redirect('home_app:home')
-        else:
-            return redirect(self.get_login_url())
 
     def get(self, request, *args, **kwargs):
         form = AboutUsForm()
@@ -172,10 +155,9 @@ class AdminAboutView(LoginRequiredMixin, UserPassesTestMixin, View):
             'form_about': form,
             'list_about': list_about, 
         }
-
+        
         return render(request, 'home/about_admin.html', context)
     
-
     def post(self, request, *args, **kwargs):
 
         form = AboutUsForm(request.POST, request.FILES)
@@ -220,21 +202,12 @@ class AdminAboutView(LoginRequiredMixin, UserPassesTestMixin, View):
 
 
 # admin only
-class AdminAboutEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class AdminAboutEditView(AdminOnlyMixin, UpdateView):
     login_url = 'users_app:user_login'
     template_name = 'home/about_edit.html'
     form_class = AboutUsForm
     model = AboutUs
     success_url = reverse_lazy('home_app:about_administrator')
-
-    def test_func(self):
-        return self.request.user.is_superuser
-    
-    def handle_no_permission(self):
-        if self.request.user.is_authenticated:
-            return redirect('home_app:home')
-        else:
-            return redirect(self.get_login_url())
 
     def form_invalid(self, form):
         messages.warning(self.request, 'No se pudo procesar tu solicitud. Por favor asegúrate de llenar todos los campos correctamente y vuelve a intentarlo.')
