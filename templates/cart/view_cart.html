@@ -41,6 +41,9 @@
                 {% endif %}
             </tbody>
         </table>
+        {% if items %}
+          <a class="cart-a-all-products" href="{{make_order}}">Hacer pedido <i class="fa-brands fa-whatsapp"></i></a>
+        {% endif %}
 </div>
 
 {% endblock  %}

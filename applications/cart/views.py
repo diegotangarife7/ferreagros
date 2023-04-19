@@ -12,7 +12,6 @@ from .cart import ShoppingCart
 
 
 # Cart
-
 class AllProductsCart(TemplateView):
     template_name = 'cart/view_cart.html'
 
@@ -22,6 +21,7 @@ class AllProductsCart(TemplateView):
 
         total_sale = 0
         items = []
+        message = ''
 
         for key, value in cart.items():
             product = value['product']
@@ -37,6 +37,13 @@ class AllProductsCart(TemplateView):
             }    
             items.append(item)
 
+            message += str(item['quantity'])
+            message += ' '
+            message += item['product']
+            message += ', '
+        make_total_sale = f'{total_sale/1000:,.3f}'
+        message += f' Total a pagar: ${str(make_total_sale)}'
+
         total_of_prducts = 0
         for item in items:
             total_of_prducts += item['quantity']
@@ -44,6 +51,7 @@ class AllProductsCart(TemplateView):
         context['items'] = items
         context['total_sale'] = total_sale
         context['total_of_prducts'] = total_of_prducts
+        context['make_order'] = f'https://api.whatsapp.com/send?phone=+573107153834&text=Hola,%20quiero%20hacer%20el%20siguiente%20pedido:%20{message}'
 
         return context
 
@@ -73,7 +81,6 @@ def subtract_product_cart(request, id):
 
     
 # Favorites
-
 @login_required(login_url='users_app:user_login')
 def add_product_favorite(request, id):
     user = request.user
