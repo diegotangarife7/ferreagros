@@ -86,14 +86,16 @@ def add_product_favorite(request, id):
     user = request.user
     product = Product.objects.get(id=id)
     
-    try:
-        favorite = Favorite.objects.create(
-            user = user,
-            product = product
-        )
-        favorite.save()
-    except:
-        IntegrityError
+    # try:
+    #     favorite = Favorite.objects.create(
+    #         user = user,
+    #         product = product
+    #     )
+    #     favorite.save()
+    # except:
+    #     IntegrityError
+
+    favorite, created = Favorite.objects.get_or_create(user= user, product=product)
 
     current_url =  request.META.get('HTTP_REFERER')
     return redirect(current_url)
