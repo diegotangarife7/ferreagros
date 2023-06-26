@@ -40,20 +40,20 @@ Ferremax also facilitates email communication, enabling users to express their i
 - Register 🚪
 <div>
 <p style = 'text-align:center;'>
-<img src="images_readme/register.png" alt="JuveR" width="400px">
+<img src="images_readme/register.png" alt="JuveR" width="500px">
 </p>
 </div>
 
 - Login 🔑
 <div>
 <p style = 'text-align:center;'>
-<img src="images_readme/login.png" alt="JuveR" width="400px">
+<img src="images_readme/login.png" alt="JuveR" width="500px">
 </p>
 </div>
 
 - Change password 🔐
 <div>
 <p style = 'text-align:center;'>
-<img src="images_readme/change_password.png" alt="JuveR" width="400px">
+<img src="images_readme/change_password.png" alt="JuveR" width="500px">
 </p>
 </div>
