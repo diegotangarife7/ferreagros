@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
-from django.db.models import Q
 
 from .models import Category, Product, ProductImages
 
@@ -72,13 +71,11 @@ def multiple_filters(request):
 
     if price_min and price_max and category_select and greader:
         all_products = Product.objects.filter(
-        Q(price__gte=price_min) & Q(price__lte=price_max) & Q(categories__name=category_select)
-        ).order_by('-price')
+        price__gte=price_min, price__lte=price_max, categories__name=category_select).order_by('-price')
 
     elif price_min and price_max and category_select and minor:
         all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(price__lte=price_max) & Q(categories__name=category_select)
-        ).order_by('price')
+            price__gte=price_min, price__lte=price_max, categories__name=category_select).order_by('price')
 
     elif price_min and price_max and category_select:
         all_products = Product.objects.filter(
@@ -87,46 +84,36 @@ def multiple_filters(request):
         
     elif price_min and price_max and greader:
         all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(price__lte=price_max)
-        ).order_by('-price')
+            price__gte=price_min, price__lte=price_max).order_by('-price')
 
     elif price_min and price_max and minor:
         all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(price__lte=price_max)
-        ).order_by('price')
+            price__gte=price_min, price__lte=price_max).order_by('price')
 
     elif price_min and category_select and greader:
         all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(categories__name=category_select)
-        ).order_by('-price')
+            price__gte=price_min, categories__name=category_select).order_by('-price')
 
     elif price_min and category_select and minor:
         all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(categories__name=category_select)
-        ).order_by('price')
+            price__gte=price_min, categories__name=category_select).order_by('price')
 
     elif price_max and category_select and greader:
         all_products = Product.objects.filter(
-            Q(price__lte=price_max) & Q(categories__name=category_select)
-        ).order_by('-price')
+            price__lte=price_max, categories__name=category_select).order_by('-price')
 
     elif price_max and category_select and minor:
         all_products = Product.objects.filter(
-             Q(price__lte=price_max) & Q(categories__name=category_select)
-        ).order_by('price')
+            price__lte=price_max, categories__name=category_select).order_by('price')
 
     elif price_min and price_max:
         try:
-            all_products = Product.objects.filter(
-                Q(price__gte=price_min) & Q(price__lte=price_max)
-            )
+            all_products = Product.objects.filter(price__gte=price_min, price__lte=price_max)
         except:
             errors.append('ha ocurrido un errror //')
 
     elif price_min and category_select:
-        all_products = Product.objects.filter(
-            Q(price__gte=price_min) & Q(categories__name=category_select)
-        )
+        all_products = Product.objects.filter(price__gte=price_min, categories__name=category_select)
 
     elif price_min and greader:
         all_products = Product.objects.filter(
@@ -140,8 +127,7 @@ def multiple_filters(request):
 
     elif price_max and category_select:
         all_products = Product.objects.filter(
-            Q(price__lte=price_max) & Q(categories__name=category_select)
-        )
+            price__lte=price_max, categories__name=category_select)
 
     elif price_max and greader:
         all_products = Product.objects.filter(
@@ -165,8 +151,7 @@ def multiple_filters(request):
 
     elif category_select:
         all_products = Product.objects.filter(
-            categories__name=category_select
-        )
+            categories__name=category_select)
 
     elif price_max:
         try:
